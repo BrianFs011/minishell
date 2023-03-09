@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:59:03 by briferre          #+#    #+#             */
-/*   Updated: 2023/03/09 07:05:44 by briferre         ###   ########.fr       */
+/*   Updated: 2023/03/09 15:56:45 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ typedef struct s_ml
 	int			i;
 	pid_t		pid_child;
 }t_ml;
+
+extern pid_t	g_pid;
 
 /// @brief Free user, host and path from t_ml
 /// @param tml	Struct t_ml

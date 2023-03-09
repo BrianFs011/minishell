@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:08:06 by briferre          #+#    #+#             */
-/*   Updated: 2023/03/09 07:09:46 by briferre         ###   ########.fr       */
+/*   Updated: 2023/03/09 14:16:43 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	fk_call_new_process(pid_t pid, t_ml *tml)
 		perror("Erro ao criar o processo filho\n");
 	else if (pid != 0)
 	{
+		g_pid = pid;
 		wait(&pid);
 		close(fd);
 		if (tml->pp_quant != 0 && !(tml->i == tml->pp_quant))

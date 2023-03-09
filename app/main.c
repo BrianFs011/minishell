@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:57:24 by briferre          #+#    #+#             */
-/*   Updated: 2023/03/09 07:05:53 by briferre         ###   ########.fr       */
+/*   Updated: 2023/03/09 15:49:27 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,13 @@ void	tml_call(t_ml *tml)
 	tml->sprt_cmd = ft_split(tml->cmd, ' ');
 	tml->pp_quant = ft_cc(tml->cmd, '|');
 	tml->pp_cmd = ft_split(tml->cmd, '|');
-	if (!ft_strcmp(tml->sprt_cmd[0], "show"))
-		vr_print(tml->vars);
+	if (!ft_strcmp(tml->sprt_cmd[0], "test"))
+	{
+		// vr_print(tml->vars);
+		// rl_on_new_line();
+		rl_replace_line("", EOF);
+		rl_redisplay();
+	}
 	else if (ft_cc(tml->sprt_cmd[0], '='))
 		vr_add_variable(tml);
 	else if (!ft_strcmp(tml->sprt_cmd[0], "exit"))
@@ -51,12 +56,16 @@ void	tml_loop(t_ml *tml)
 	ft_free(tml->cmd);
 }
 
+pid_t	g_pid;
+
 int	main(int argc, t_string *argv, t_string *env)
 {
 	t_ml			tml;
 
 	(void)argc;
 	(void)argv;
+
+	g_pid = 0;
 	tml.env = env;
 	tml.running = RUNNIG;
 	sa_hooks(&tml.sa);
