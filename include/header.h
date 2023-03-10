@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:59:03 by briferre          #+#    #+#             */
-/*   Updated: 2023/03/09 15:56:45 by briferre         ###   ########.fr       */
+/*   Updated: 2023/03/10 16:40:10 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_vars
 {
 	t_string		name;
 	t_string		value;
+	int				size;
 	struct s_vars	*next;
 }t_vars;
 
@@ -63,6 +64,7 @@ typedef struct s_ml
 	t_string	temp;
 	t_string	info;
 	t_string	*env;
+	t_string	*paths;
 	t_sigaction	sa;
 	t_vars		*vars;
 	int			running;
@@ -125,6 +127,9 @@ t_string	ft_strcat(t_string src1, t_string src2, t_bool free1, t_bool free2);
 /// @param str2 String 2
 /// @return If equal if 0
 int			ft_strcmp(t_string str1, t_string str2);
+
+
+t_string	ft_strrpc(t_string dest, t_string src, t_bool free1, t_bool free2);
 
 /// @brief Count the quantity of character
 /// @param text t_string with text
@@ -190,7 +195,8 @@ void		ck_check(t_ml *tml);
 
 /// @brief Add variable in linked list
 /// @param tml struct t_ml
-void		vr_add_variable(t_ml *tml);
+// void		vr_add_variable(t_ml *tml);
+void		vr_add_variable(t_vars **start, t_string variables);
 
 /// @brief Insert in linked list
 /// @param start Adress struct t_vars

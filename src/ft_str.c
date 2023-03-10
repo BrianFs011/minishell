@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 19:01:52 by briferre          #+#    #+#             */
-/*   Updated: 2023/02/25 20:04:18 by briferre         ###   ########.fr       */
+/*   Updated: 2023/03/10 14:47:28 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,13 @@ t_string	ft_strcat(t_string src1, t_string src2, t_bool free1, t_bool free2)
 	if (free2)
 		ft_free(src2);
 	return (new_dest);
+}
+
+t_string	ft_strrpc(t_string dest, t_string src, t_bool free1, t_bool free2)
+{
+	if (free1)
+		ft_free(dest);
+	return (ft_strcpy(src, free2));
 }
 
 int	ft_strcmp(t_string str1, t_string str2)

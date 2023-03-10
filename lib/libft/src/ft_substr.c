@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 23:14:18 by briferre          #+#    #+#             */
-/*   Updated: 2022/07/06 13:47:26 by briferre         ###   ########.fr       */
+/*   Updated: 2023/03/09 17:02:18 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,30 +34,3 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		ft_strlcpy(new_s, &s[start], i);
 	return (new_s);
 }
-// {
-// 	size_t		i;
-// 	size_t		j;
-// 	char		*new_s;
-
-// 	i = (size_t)ft_strlen((char *)s);
-// 	if (len < i)
-// 		i = len;
-// 	if (start > i)
-// 		i = 0;
-// 	new_s = (char *)malloc((sizeof(char) * i) + 1);
-// 	if (!new_s)
-// 		return (NULL);
-// 	i = 0;
-// 	j = 0;
-// 	while (s[i])
-// 	{
-// 		if (i >= start && j < len)
-// 		{
-// 			new_s[j] = s[i];
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// 	new_s[j] = '\0';
-// 	return (new_s);
-// }

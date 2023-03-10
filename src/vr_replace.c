@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:41:58 by briferre          #+#    #+#             */
-/*   Updated: 2023/03/07 17:02:23 by briferre         ###   ########.fr       */
+/*   Updated: 2023/03/09 18:53:02 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	ft_replace(t_ml *tml, int *i)
 	int			j;
 
 	j = (*i);
-	// printf("%c %d\n", tml->cmd[j], tml->cmd[j + 1]);
 	temp01(tml, temp, i);
 	temp02(tml, temp, i, &j);
 	temp03(tml, temp, &j);

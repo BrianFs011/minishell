@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:08:06 by briferre          #+#    #+#             */
-/*   Updated: 2023/03/09 14:16:43 by briferre         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:24:00 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	fk_call_new_process(pid_t pid, t_ml *tml)
 	{
 		g_pid = pid;
 		wait(&pid);
-		close(fd);
+		if (fd != -10)
+			close(fd);
 		if (tml->pp_quant != 0 && !(tml->i == tml->pp_quant))
 			close(tml->pp_lpipes[tml->i][1]);
 	}

@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 15:33:53 by briferre          #+#    #+#             */
-/*   Updated: 2023/03/09 16:13:23 by briferre         ###   ########.fr       */
+/*   Updated: 2023/03/09 20:05:37 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void	handle_interrupt(int signal)
 	if (g_pid != 0)
 	{
 		kill(g_pid, SIGTERM);
+		wait(NULL);
 		g_pid = 0;
 	}
 	else
