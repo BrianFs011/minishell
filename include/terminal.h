@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:49:53 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/07 10:23:56 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/15 08:17:31 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_ml
 	t_string			info;
 	t_string			*sprt_cmd;
 	t_string			*env;
+	t_varlist			*assigned;
 
 	t_string			temp;
 	t_string			*pp_cmd;
@@ -31,7 +32,6 @@ typedef struct s_ml
 	t_sigaction			sa;
 	t_varlist			*vars;
 	t_varlist			*cmd_vars;
-	t_varlist			*assigned;
 	int					running;
 	int					pp_quant;
 	int					**pp_lpipes;

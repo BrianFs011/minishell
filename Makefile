@@ -9,7 +9,9 @@ FOLDERS		= $(BIN) $(OBJ)
 LIBFT			= $(LIB)/libft/bin/libft.a
 INCLUDE		= ./include
 NAME			= $(BIN)/minishell
-BUILTINS	= bt_call01.c bt_call02.c bt_cd.c bt_echo.c
+
+#SRC FILES
+BUILTINS	= bt_exit.c bt_cd.c bt_echo.c bt_pwd.c bt_env.c bt_unset.c bt_export.c bt_export_unset_utils.c
 CHECKS		= ck_cmd.c ck_compress.c ck_redirect.c
 
 #VARIABLES
@@ -65,7 +67,7 @@ clean:
 fclean: clean
 	rm -rf $(BIN)
 	rm -rf $(LIB)/libminishell.a
-	make fclean -C $(LIB)/libft
+#make fclean -C $(LIB)/libft
 
 re: fclean all
 

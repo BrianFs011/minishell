@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bt_builtins02.c                                    :+:      :+:    :+:   */
+/*   bt_export_unset_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/04 11:36:39 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/05 16:59:12 by briferre         ###   ########.fr       */
+/*   Created: 2023/04/15 07:40:08 by briferre          #+#    #+#             */
+/*   Updated: 2023/04/15 08:11:30 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-static void	remove_no(t_varlist **start, t_varlist **temp, t_varlist **before)
+void	remove_no(t_varlist **start, t_varlist **temp, t_varlist **before)
 {
 	t_varlist	*aux;
 
@@ -33,7 +33,7 @@ static void	remove_no(t_varlist **start, t_varlist **temp, t_varlist **before)
 	}
 }
 
-static int	export_from_assigned(t_ml *tml)
+int	export_from_assigned(t_ml *tml)
 {
 	t_varlist	*temp;
 	t_varlist	*before;
@@ -53,60 +53,5 @@ static int	export_from_assigned(t_ml *tml)
 		before = temp;
 		temp = temp->next;
 	}
-	return (0);
-}
-
-int	bt_export(t_ml *tml)
-{
-	t_varlist	var;
-	int			exit_status;
-
-	exit_status = 0;
-	if (ft_cc(tml->cmd, '='))
-	{
-		var = vr_get_name_value(tml->sprt_cmd[1]);
-		if (!ft_strisalpha(var.name))
-		{
-			free(var.name);
-			free(var.value);
-			return (1);
-		}
-		if (!vr_change_value(&(tml->vars), var))
-			vr_insert(&(tml->vars), var);
-		else
-		{
-			free(var.name);
-			free(var.value);
-		}
-	}
-	else
-		exit_status = export_from_assigned(tml);
-	vr_print(tml->assigned);
-	return (exit_status);
-}
-
-t_bool	bt_unset(t_varlist **start, t_string string)
-{
-	t_varlist	*temp;
-	t_varlist	*before;
-
-	temp = (*start);
-	before = NULL;
-	while (temp)
-	{
-		if (!ft_strcmp(temp->name, string))
-		{
-			remove_no(start, &temp, &before);
-			return (TRUE);
-		}
-		before = temp;
-		temp = temp->next;
-	}
-	return (FALSE);
-}
-
-int	bt_env(t_varlist *start)
-{
-	vr_print(start);
 	return (0);
 }

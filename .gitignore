@@ -1,0 +1,6 @@
+.vscode
+obj
+bin
+lib/libft/obj
+lib/libft/bin
+out.txt
