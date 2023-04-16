@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fk_fork_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:08:06 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/07 08:57:39 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/16 14:41:13 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 void	fk_call_new_process(pid_t pid, t_ml *tml)
 {
 	int	fd;
-	int	status;
+	// int	status;
+	t_varlist	var;
 
 	fd = -10;
 	if (pid == -1)
@@ -23,16 +24,14 @@ void	fk_call_new_process(pid_t pid, t_ml *tml)
 	else if (pid != 0)
 	{
 		g_pid = pid;
-		waitpid(pid, &status, 0);
-		status = WEXITSTATUS(status);
-		// pp_error(tml, &status);
+		var.name = ft_strcpy("pid", FALSE);
+		var.value = ft_strcpy(ft_itoa(pid), TRUE);
+		vr_insert(&tml->pid_list, var);
 		if (fd != -10)
 			close(fd);
 		if (tml->pp_quant != 0 && !(tml->i == tml->pp_quant))
 			close(tml->pp_lpipes[tml->i][1]);
-		if (status == 0)
-			status = tml_exec_father(tml);
-		tml_exit_status(&tml->assigned, status, FALSE);
+		tml_exec_father(tml);
 		tml->exit_status = 0;
 		g_pid = G_FATHER;
 	}
@@ -41,4 +40,20 @@ void	fk_call_new_process(pid_t pid, t_ml *tml)
 		g_pid = G_CHILD;
 		tml->exit_status = tml_exec_child(tml, &fd);
 	}
+}
+
+//wait pid
+
+void	ft_wait_execs(t_ml *data)
+{
+	int	new_exit_code;
+
+	while (data->pid_list)
+	{
+		waitpid((*(pid_t *)data->pid_list->value), &new_exit_code, 0);
+		new_exit_code = WEXITSTATUS(new_exit_code);
+		// pp_error(tml, &status);
+		data->pid_list = data->pid_list->next;
+	}
+	tml_exit_status(&data->assigned, new_exit_code, FALSE);
 }

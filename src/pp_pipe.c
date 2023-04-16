@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pp_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:31:44 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/16 10:42:15 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/16 14:39:30 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	pp_call_pipe(t_ml *tml)
 		fk_call_new_process(fork(), tml);
 		tml_free_sprt_cmd(tml->sprt_cmd);
 	}
+	ft_wait_execs(tml);// rever localização
 	if (tml->pp_quant > 0)
 		pp_delete_linked_pipes(tml);
 }
