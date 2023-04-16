@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:57:24 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/16 10:43:25 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/16 17:05:16 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	main(int argc, t_string *argv, t_string *env)
 	}
 	tml_free_uhp(&tml);
 	tml_free_sprt_cmd(tml.paths);
+	vr_delete(&tml.pid_list);
 	vr_delete(&tml.assigned);
 	vr_delete(&tml.vars);
 	rl_clear_history();

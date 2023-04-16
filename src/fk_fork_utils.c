@@ -6,7 +6,7 @@
 /*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:08:06 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/16 16:44:52 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/04/16 17:14:03 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,20 @@ void	fk_call_new_process(t_ml *tml)
 
 void	ft_wait_execs(t_ml *tml)
 {
-	int		new_exit_code;
-	pid_t	pid;
+	int			new_exit_code;
+	t_varlist	*temp;
+	pid_t		pid;
 
-	while (tml->pid_list)
+	temp = tml->pid_list;
+	while (temp)
 	{
-		pid = ft_atoi(tml->pid_list->value);
+		pid = ft_atoi(temp->value);
 		waitpid(pid, &new_exit_code, 0);
 		new_exit_code = WEXITSTATUS(new_exit_code);
 		// pp_error(tml, &status);
-		tml->pid_list = tml->pid_list->next;
+		temp = temp->next;
 	}
+	vr_delete(&tml->pid_list);
+	tml->pid_list = NULL;
 	tml_exit_status(&tml->assigned, new_exit_code, FALSE);
 }
