@@ -17,7 +17,7 @@ CHECKS		= ck_cmd.c ck_compress.c ck_redirect.c
 #VARIABLES
 SRCS		= ft_str.c fk_fork_utils.c tml_functions.c fl_file.c \
 			  ft_clear_memory.c tml_clear_memory.c rd_redirection.c \
-			  ft_error.c pp_pipe.c sa_sigaction.c sa_hooks.c vr_linked_list.c \
+			  pp_pipe.c sa_sigaction.c sa_hooks.c vr_linked_list.c \
 				vr_vars.c tml_init.c ft_str2.c \
 				vr_descompress.c vr_descompress_utils.c \
 				vr_assigned.c tml_functions_utils.c \
@@ -49,7 +49,7 @@ run: all
 	$(NAME)
 
 test:
-	gcc main.c -lreadline -lcurses -o main; ./main
+	bash ./bin/minishell_tester/tester
 
 check_gen: all
 	valgrind $(VAL_FLAGS) --log-file=valg/valgrind-suppressions-out.txt --gen-suppressions=yes $(NAME)

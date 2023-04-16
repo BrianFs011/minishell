@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:31:44 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/14 06:18:19 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/16 10:42:15 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	pp_call_pipe(t_ml *tml)
 		while (tml->sprt_cmd[++i])
 		{
 			tml->sprt_cmd[i] = vr_descompress(tml, tml->sprt_cmd[i]);
-			// printf("\033[32msprt\033[0m: %s\n", tml->sprt_cmd[i]);
+			// printf("\033[32msprt\033[0m: |%s|\n", tml->sprt_cmd[i]);
 		}
 		check_empty_line(tml);
 		fk_call_new_process(fork(), tml);
@@ -45,10 +45,10 @@ void	pp_switch(t_ml *tml)
 	else
 	{
 		if (dup2(tml->pp_lpipes[tml->i - 1][0], STDIN_FILENO) == -1)
-			ft_error("dup2", EXIT_FAILURE);
+			tml_set_pexit_status("dup2", EXIT_FAILURE);
 		close(tml->pp_lpipes[tml->i][0]);
 		if (dup2(tml->pp_lpipes[tml->i][1], STDOUT_FILENO) == -1)
-			ft_error("dup2", EXIT_FAILURE);
+			tml_set_pexit_status("dup2", EXIT_FAILURE);
 	}
 }
 

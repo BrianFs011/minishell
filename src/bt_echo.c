@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 12:05:28 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/14 11:46:05 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/16 10:27:36 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,11 @@ int	bt_echo(t_string *splt)
 			if (!ft_strcmp(splt[i], ">>") || !ft_strcmp(splt[i], ">")
 				|| !ft_strcmp(splt[i], "<") || !ft_strcmp(splt[i], "<<"))
 				break ;
+			if (splt[i] && splt[i + 1] == NULL)
+				printf("%s", splt[i]);
+			else
+				printf("%s ", splt[i]);
 			// printf("\033[37m%s\033[0m ", splt[i]);
-			printf("%s ", splt[i]);
 		}
 	}
 	if (!f)

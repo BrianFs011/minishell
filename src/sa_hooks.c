@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 15:33:53 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/15 08:35:13 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/15 11:57:15 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,16 @@ static void	handle_interrupt(int signal)
 {
 	t_ml	t;
 
-	printf("%d\n", g_pid);
+	// printf("%d\n", g_pid);
 	(void)signal;
 	if (g_pid == G_CHILD)
 	{
-		printf("filho\n");
 		(void)t;
+
+		// rl_on_new_line();
+    // rl_replace_line("", 0);
+    // rl_redisplay();
+		printf("\n");
 		free_tml(&t, 0, 1);
 		exit(130);
 	}

@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:53:50 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/14 11:59:01 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/16 11:12:24 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ void	tml_init(int argc, t_string *argv, t_string *env, t_ml *tml)
 
 	(void)argc;
 	(void)argv;
-	rl_terminal_name = "xterm-256color";
-	putenv("LINES=24");
-  putenv("COLUMNS=80");
-	using_history();
+	// rl_terminal_name = "xterm-256color";
+	// putenv("LINES=24");
+  // putenv("COLUMNS=80");
+	// using_history();
 	tml->exit_status = 0;
 	i = -1;
 	g_pid = 0;

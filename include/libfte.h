@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 16:19:01 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/05 08:48:12 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/15 10:22:05 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@
 /// @brief Free pointer
 /// @param ptr Addrs from pointer
 void		ft_free(void *ptr);
-
-/// @brief Join perror and exit
-/// @param message Message error
-/// @param type Type exit
-void		ft_error(char *message, int type);
 
 /// @brief Count the quantity of character
 /// @param text t_string with text

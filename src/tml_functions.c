@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:14:10 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/07 10:27:01 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/15 10:07:15 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,16 @@ int	tml_exec_child(t_ml *tml, int *fd)
 	int	exit_status;
 
 	exit_status = 0;
-	rd_redirection(tml, fd);
-	if (condition_for_find_exec(tml))
+	exit_status = rd_redirection(tml, fd);
+	if (condition_for_find_exec(tml) && exit_status == 0)
 		exit_status = tml_find_exec(tml);
-	if (tml->pp_quant != 0)
+	if (tml->pp_quant != 0 && exit_status == 0)
 		pp_switch(tml);
-	if (!ft_strcmp(tml->sprt_cmd[0], "pwd"))
+	if (!ft_strcmp(tml->sprt_cmd[0], "pwd") && exit_status == 0)
 		exit_status = bt_pwd(tml);
-	if (!ft_strcmp(tml->sprt_cmd[0], "echo"))
+	if (!ft_strcmp(tml->sprt_cmd[0], "echo") && exit_status == 0)
 		exit_status = bt_echo(tml->sprt_cmd);
-	if (!ft_strcmp(tml->sprt_cmd[0], "env"))
+	if (!ft_strcmp(tml->sprt_cmd[0], "env") && exit_status == 0)
 		exit_status = bt_env(tml->vars);
 	if (condition_for_exit(tml) || exit_status != 0)
 		exit(exit_status);

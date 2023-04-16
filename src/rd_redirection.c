@@ -6,30 +6,31 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 18:09:52 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/14 11:44:59 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/15 11:15:40 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	rd_out(t_ml *tml, int *fd, int *i)
+int	rd_out(t_ml *tml, int *fd, int *i)
 {
-	int	oflag;
+	int			oflag;
 
 	if (!strcmp(tml->sprt_cmd[*i], ">") || !strcmp(tml->sprt_cmd[*i], ">>"))
 	{
+		// printf("\033[35msprt_cmd\033[0m: %s|\n", tml->sprt_cmd[*i]);
 		oflag = O_CREAT | O_WRONLY | O_TRUNC;
-		// printf("%s\n", tml->sprt_cmd[(*i) + 1]);
 		if (!strcmp(tml->sprt_cmd[*i], ">"))
 			*fd = open (tml->sprt_cmd[++(*i)], oflag, 0644);
 		oflag = O_WRONLY | O_APPEND | O_CREAT;
 		if (!strcmp(tml->sprt_cmd[*i], ">>"))
 			*fd = open (tml->sprt_cmd[++(*i)], oflag, 0644);
 		if (*fd == -1)
-			ft_error("open", EXIT_FAILURE);
+			return (tml_set_pexit_status("open", 1));
 		if (dup2(*fd, STDOUT_FILENO) == -1)
-			ft_error("dup2", EXIT_FAILURE);
+			return (tml_set_pexit_status("dup2", 1));
 	}
+	return (0);
 }
 
 void	free_tml(t_ml *tml, t_bool save, t_bool free)
@@ -57,7 +58,7 @@ void	rd_in_delimiter(t_ml *tml, int *i)
 	int	fd_pipe[2];
 
 	if (pipe(fd_pipe) == -1)
-		ft_error("pipe", EXIT_FAILURE);
+		tml_set_pexit_status("pipe", EXIT_FAILURE);
 	(*i)++;
 	tml->sprt_cmd[*i] = ft_strcat(tml->sprt_cmd[*i], "\n", TRUE, FALSE);
 	free_tml(tml, 1, 0);
@@ -72,36 +73,43 @@ void	rd_in_delimiter(t_ml *tml, int *i)
 	}
 	close(fd_pipe[1]);
 	if (dup2(fd_pipe[0], STDIN_FILENO) == -1)
-		ft_error("dup2", EXIT_FAILURE);
+		tml_set_pexit_status("dup2", EXIT_FAILURE);
 	close(fd_pipe[0]);
 }
 
-void	rd_in(t_ml *tml, int *fd, int *i)
+int	rd_in(t_ml *tml, int *fd, int *i)
 {
 	if (!strcmp(tml->sprt_cmd[*i], "<"))
 	{
 		*fd = open(tml->sprt_cmd[++(*i)], O_RDONLY, 0644);
 		if (*fd == -1)
-			ft_error("open", EXIT_FAILURE);
+			return (tml_set_pexit_status("open", 1));
 		if (dup2(*fd, STDIN_FILENO) == -1)
-			ft_error("dup2", EXIT_FAILURE);
+			return (tml_set_pexit_status("dup2", 1));
 	}
 	if (!strcmp(tml->sprt_cmd[*i], "<<"))
 	{
 		rd_in_delimiter(tml, i);
 		*fd = -2;
 	}
+	return (0);
 }
 
-void	rd_redirection(t_ml *tml, int *fd)
+int	rd_redirection(t_ml *tml, int *fd)
 {
 	int	i;
+	int	exit_status;
 
 	i = -1;
+	exit_status = 0;
 	while (tml->sprt_cmd[++i])
 	{
-		rd_in(tml, fd, &i);
-		rd_out(tml, fd, &i);
+		exit_status = rd_in(tml, fd, &i);
+		if (exit_status != 0)
+			return (exit_status);
+		exit_status = rd_out(tml, fd, &i);
+		if (exit_status != 0)
+			return (exit_status);
 		if (*fd != -10)
 		{
 			free(tml->sprt_cmd[--i]);
@@ -110,4 +118,5 @@ void	rd_redirection(t_ml *tml, int *fd)
 			tml->sprt_cmd[i] = NULL;
 		}
 	}
+	return (exit_status);
 }

@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:57:24 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/08 10:52:07 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/16 10:43:25 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@ pid_t	g_pid;
 
 void	tml_call(t_ml *tml)
 {
-	ck_check(tml);
-	tml->pp_quant = ft_cc(tml->cmd, '|');
-	tml->pp_cmd = ft_split(tml->cmd, '|');
-	pp_call_pipe(tml);
-	tml_free_sprt_cmd(tml->pp_cmd);
+	if (ck_check(tml) == 0)
+	{
+		tml->pp_quant = ft_cc(tml->cmd, '|');
+		tml->pp_cmd = ft_split(tml->cmd, '|');
+		pp_call_pipe(tml);
+		tml_free_sprt_cmd(tml->pp_cmd);
+	}
 	if (tml->env)
 		tml_free_sprt_cmd(tml->env);
 }
@@ -60,6 +62,6 @@ int	main(int argc, t_string *argv, t_string *env)
 	vr_delete(&tml.vars);
 	rl_clear_history();
 	if (tml.running == EXIT)
-		printf("Saindo!\n");
+		printf("0\n");
 	return (tml.exit_status);
 }

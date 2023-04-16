@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 08:21:41 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/05 08:30:39 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/15 09:38:41 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,3 +22,5 @@ int	ft_strisalpha(t_string str)
 			return (0);
 	return (1);
 }
+
+

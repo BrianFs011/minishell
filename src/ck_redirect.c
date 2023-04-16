@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 07:09:40 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/15 08:35:42 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/15 11:55:26 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,10 +128,14 @@ t_string	get_operator(t_string string, int *i)
 t_string	get_after(t_string string, int *i)
 {
 	t_string	after;
+	int			size_string;
 
-	after = ft_substr(string, (*i), ft_strlen(string) - (*i));
-	// printf("\033[36mget_before\033[0m: %s\n", after);
-	if (unexpected_token(after))
+	after = NULL;
+	size_string = ft_strlen(string);
+	if (size_string > (*i))
+		after = ft_substr(string, (*i), size_string - (*i));
+	// printf("\033[36mget_before\033[0m: |%s| %d %d\n", after, size_string, (*i));
+	if (after && unexpected_token(after))
 	{
 		free(after);
 		after = NULL;
@@ -139,15 +143,17 @@ t_string	get_after(t_string string, int *i)
 	return (after);
 }
 
-void	ck_redictions(t_ml *tml)
+int	ck_redictions(t_ml *tml)
 {
 	int			i;
+	int			exit_status;
 	t_string	new;
 	t_string	after;
 
 	// printf("\033[33mck_redirect\033[0m: %s\n", tml->cmd);
 	i = -1;
 	new = NULL;
+	exit_status = 0;
 	while (tml->cmd[++i])
 	{
 		if (tml->cmd[i] == '<' || tml->cmd[i] == '>')
@@ -155,11 +161,21 @@ void	ck_redictions(t_ml *tml)
 			new = get_before(tml->cmd, &i);
 			new = ft_strcat(new, get_operator(tml->cmd, &i), TRUE, TRUE);
 			after = get_after(tml->cmd, &i);
+			// printf("%p\n", after);
+			if (!after)
+			{
+				exit_status = 2;
+				after = "syntax error near unexpected token `newline'\n";
+				tml_exit_status(&tml->assigned, exit_status, FALSE);
+				free(new);
+				return (tml_set_exit_status(after, exit_status));
+			}
 			new = ft_strcat(new, after, TRUE, TRUE);
-		}//redirect_input
+		}
 	}
 	// printf("\033[35mnew\033[0m: %s|\n", new);
 	if (new)
 		tml->cmd = ft_strrpc(tml->cmd, new, TRUE, TRUE);
 	// printf("\033[33mck_redirect\033[0m: %s\n", tml->cmd);
+	return (exit_status);
 }

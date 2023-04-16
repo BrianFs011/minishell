@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 12:12:31 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/07 12:21:43 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/15 11:22:18 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	ck_compress(t_ml *tml, int *i, char c)
 	}
 }
 
-void	ck_quotes(t_ml *tml)
+int	ck_quotes(t_ml *tml)
 {
 	int			i;
 
@@ -81,4 +81,5 @@ void	ck_quotes(t_ml *tml)
 		else if (tml->cmd[i] == '\'')
 			ck_compress(tml, &i, '\'');
 	}
+	return (0);
 }

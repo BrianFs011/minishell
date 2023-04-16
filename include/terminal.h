@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:49:53 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/15 08:17:31 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/15 11:13:35 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,9 @@ int			vr_new_assignment(t_ml *tml);
 void		tml_exit_status(t_varlist **start, int value, int init);
 
 void		free_tml(t_ml *tml, t_bool save, t_bool free);
+
+int			tml_set_exit_status(t_string msg, int exit);
+
+int			tml_set_pexit_status(t_string message, int type);
 
 #endif

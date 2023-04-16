@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 08:42:41 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/05 10:34:12 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/15 10:20:17 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,16 @@ void	tml_exit_status(t_varlist **start, int value, int init)
 	vr_insert(start, var);
 	if (!init)
 		free(var.name);
+}
+
+int	tml_set_exit_status(t_string msg, int exit)
+{
+	printf("%s", msg);
+	return (exit);
+}
+
+int	tml_set_pexit_status(char *message, int type)
+{
+	perror(message);
+	return (type);
 }
