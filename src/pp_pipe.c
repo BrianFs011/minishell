@@ -6,7 +6,7 @@
 /*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:31:44 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/16 14:39:30 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/04/16 15:45:01 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	pp_call_pipe(t_ml *tml)
 		while (tml->sprt_cmd[++i])
 		{
 			tml->sprt_cmd[i] = vr_descompress(tml, tml->sprt_cmd[i]);
-			// printf("\033[32msprt\033[0m: |%s|\n", tml->sprt_cmd[i]);
+			// printf("\001\033[32m\002sprt\001\033[0m\002: |%s|\n", tml->sprt_cmd[i]);
 		}
 		check_empty_line(tml);
 		fk_call_new_process(fork(), tml);
