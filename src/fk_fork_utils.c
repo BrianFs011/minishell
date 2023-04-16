@@ -6,19 +6,20 @@
 /*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:08:06 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/16 14:41:13 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/04/16 16:44:52 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	fk_call_new_process(pid_t pid, t_ml *tml)
+void	fk_call_new_process(t_ml *tml)
 {
 	int	fd;
-	// int	status;
+	pid_t	pid;
 	t_varlist	var;
 
 	fd = -10;
+	pid = fork();
 	if (pid == -1)
 		perror("Erro ao criar o processo filho\n");
 	else if (pid != 0)
@@ -44,16 +45,18 @@ void	fk_call_new_process(pid_t pid, t_ml *tml)
 
 //wait pid
 
-void	ft_wait_execs(t_ml *data)
+void	ft_wait_execs(t_ml *tml)
 {
-	int	new_exit_code;
+	int		new_exit_code;
+	pid_t	pid;
 
-	while (data->pid_list)
+	while (tml->pid_list)
 	{
-		waitpid((*(pid_t *)data->pid_list->value), &new_exit_code, 0);
+		pid = ft_atoi(tml->pid_list->value);
+		waitpid(pid, &new_exit_code, 0);
 		new_exit_code = WEXITSTATUS(new_exit_code);
 		// pp_error(tml, &status);
-		data->pid_list = data->pid_list->next;
+		tml->pid_list = tml->pid_list->next;
 	}
-	tml_exit_status(&data->assigned, new_exit_code, FALSE);
+	tml_exit_status(&tml->assigned, new_exit_code, FALSE);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 20:27:47 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/04 06:21:29 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/16 16:13:17 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 /// @brief Create a new process
 /// @param pid Pid from fork function
 /// @param tml Struct t_ml
-void		fk_call_new_process(pid_t pid, t_ml *tml);
+void		fk_call_new_process(t_ml *tml);
 
 /// @brief Get text from file text
 /// @param path Path from file text
