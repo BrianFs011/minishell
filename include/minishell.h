@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:59:03 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/06 07:49:33 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/16 15:07:17 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@
 # define G_CHILD  1
 # define G_QUOTE  2
 # define G_EXIT  -1
+
+# define PINK "\001\033[1;35m\002"
+# define GREY "\001\033[22;39m\002"
+# define WHITE "\001\033[1;90m\002"
+# define RESET "\001\033[0m\002"
 
 // typedef struct s_
 
