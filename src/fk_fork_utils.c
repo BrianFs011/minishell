@@ -6,7 +6,7 @@
 /*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:08:06 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/16 17:14:03 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/04/16 17:45:19 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	fk_call_new_process(t_ml *tml)
 {
-	int	fd;
-	pid_t	pid;
+	int			fd;
+	pid_t		pid;
 	t_varlist	var;
 
 	fd = -10;
@@ -25,7 +25,7 @@ void	fk_call_new_process(t_ml *tml)
 	else if (pid != 0)
 	{
 		g_pid = pid;
-		var.name = ft_strcpy("pid", FALSE);
+		var.name = ft_strcpy(ft_itoa(pid), TRUE);
 		var.value = ft_strcpy(ft_itoa(pid), TRUE);
 		vr_insert(&tml->pid_list, var);
 		if (fd != -10)
@@ -43,13 +43,11 @@ void	fk_call_new_process(t_ml *tml)
 	}
 }
 
-//wait pid
-
 void	ft_wait_execs(t_ml *tml)
 {
 	int			new_exit_code;
-	t_varlist	*temp;
 	pid_t		pid;
+	t_varlist	*temp;
 
 	temp = tml->pid_list;
 	while (temp)
