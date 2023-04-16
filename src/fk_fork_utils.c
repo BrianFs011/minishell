@@ -6,7 +6,7 @@
 /*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:08:06 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/16 17:45:19 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/04/16 18:03:04 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	fk_call_new_process(t_ml *tml)
 	}
 }
 
-void	ft_wait_execs(t_ml *tml)
+void	fk_wait_execs(t_ml *tml)
 {
 	int			new_exit_code;
 	pid_t		pid;

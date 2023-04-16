@@ -6,7 +6,7 @@
 /*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:31:44 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/16 16:31:19 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/04/16 18:03:00 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	pp_call_pipe(t_ml *tml)
 		fk_call_new_process(tml);
 		tml_free_sprt_cmd(tml->sprt_cmd);
 	}
-	ft_wait_execs(tml);// rever localização
+	fk_wait_execs(tml);// rever localização
 	if (tml->pp_quant > 0)
 		pp_delete_linked_pipes(tml);
 }
