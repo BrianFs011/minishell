@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   terminal.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:49:53 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/16 18:03:28 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/04/17 18:55:16 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct s_ml
 	t_string			host;
 	t_string			path;
 	t_string			cmd;
-	t_string			info;
+	t_string			prompt;
 	t_string			*sprt_cmd;
 	t_string			*env;
 	t_varlist			*assigned;

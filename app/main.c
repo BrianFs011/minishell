@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:57:24 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/16 17:05:16 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/04/17 18:55:16 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	tml_call(t_ml *tml)
 void	tml_loop(t_ml *tml)
 {
 	tml_create_uhp_line(tml);
-	tml->cmd = readline(tml->info);
+	tml->cmd = readline(tml->prompt);
 	if (tml->cmd)
 	{
 		add_history(tml->cmd);
@@ -41,7 +41,7 @@ void	tml_loop(t_ml *tml)
 		tml->running = FALSE;
 	vr_delete(&tml->cmd_vars);
 	ft_free(tml->path);
-	ft_free(tml->info);
+	ft_free(tml->prompt);
 	ft_free(tml->cmd);
 }
 
