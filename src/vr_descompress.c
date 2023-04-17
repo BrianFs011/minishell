@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:41:58 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/05 17:58:54 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/17 15:58:35 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ t_string	vr_descompress(t_ml *tml, t_string string)
 	{
 		if (new_string && string[i] != '$')
 			temp[++j] = string[i];
-		if (string[i] == '$')
+		if (string[i] == '$' && string[i + 1] != ' ' && string[i + 1] != '\0')
 		{
 			new_string = get_between_dollar(new_string, string, &temp, &j);
 			new_string = check_env_or_var(tml, new_string, string, &i);
