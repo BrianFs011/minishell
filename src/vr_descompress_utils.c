@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:45:34 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/07 10:38:11 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/17 16:05:12 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_string	get_var(t_ml *tml, t_string string, int *i)
 
 	j = (*i);
 	while (string[++(*i)] && string[*i] != ' ' && string[*i] != '$'
-		&& string[*i] != '\'' && string[*i] != '/')
+		&& string[*i] != '\'' && string[*i] != '/' && ft_isdigit(string[*i]))
 		;
 	name = ft_substr(string, j + 1, (*i) - j - 1);
 	value = vr_get_value(tml->cmd_vars, name, TRUE);
