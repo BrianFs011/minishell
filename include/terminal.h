@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:49:53 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 18:55:16 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:09:07 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_ml
 
 	t_string			temp;
 	t_string			*pp_cmd;
-	t_string			*paths;
+	// t_string			*paths;
 	t_sigaction			sa;
 	t_varlist			*vars;
 	t_varlist			*cmd_vars;

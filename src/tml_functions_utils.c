@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:21:41 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/07 10:24:48 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:14:37 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,30 +31,39 @@ t_string	*tml_construct_env(t_ml *tml)
 	return (env);
 }
 
+static t_string	*init_path(t_varlist *start)
+{
+	t_varlist	*temp;
+
+	temp = start;
+	while (temp && ft_strncmp(temp->name, "PATH", 4))
+		temp = temp->next;
+	return (ft_split(temp->value, ':'));
+}
+
 int	tml_find_exec(t_ml *tml)
 {
 	t_string	temp;
+	t_string	*paths;
 	int			i;
 	int			check;
 
 	i = -1;
 	check = 127;
-	while (tml->paths[++i])
+	paths = init_path(tml->vars);
+	while (paths[++i] && check != 0)
 	{
-		temp = ft_strcat(tml->paths[i],
-				ft_strcat("/", tml->sprt_cmd[0],
+		temp = ft_strcat(paths[i], ft_strcat("/", tml->sprt_cmd[0],
 					FALSE, FALSE), FALSE, TRUE);
 		if (access(temp, X_OK) == 0)
 		{
-
-			free(tml->sprt_cmd[0]);
-			tml->sprt_cmd[0] = ft_strcpy(temp, TRUE);
+			tml->sprt_cmd[0] = ft_strrpc(tml->sprt_cmd[0], temp, TRUE, TRUE);
 			check = 0;
-			break ;
 		}
 		else
 			free(temp);
 	}
+	tml_free_sprt_cmd(paths);
 	if (check)
 		printf("minishell: %s: command not found\n", tml->sprt_cmd[0]);
 	return (check);
