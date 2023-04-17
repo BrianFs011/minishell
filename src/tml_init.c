@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:53:50 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 19:13:44 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:39:07 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	tml_init(int argc, t_string *argv, t_string *env, t_ml *tml)
 	i = -1;
 	g_pid = 0;
 	tml->vars = NULL;
-	tml->env = NULL;
+	// tml->env = NULL;
 	tml->assigned = NULL;
 	tml->pid_list = NULL;
 	while (env[++i])

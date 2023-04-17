@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:49:53 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 19:21:40 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:39:12 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,23 @@
 
 typedef struct s_ml
 {
+	/* Display prompt */
 	t_string			user;
 	t_string			host;
 	t_string			pwd;
-	t_string			cmd;
 	t_string			prompt;
+
+	/* User input */
+	t_string			cmd;
+	t_string			*pp_cmd;
 	t_string			*sprt_cmd;
-	t_string			*env;
+
+	// t_string			*env;
+
 	t_varlist			*assigned;
 	t_varlist			*pid_list;
 
 	t_string			temp;
-	t_string			*pp_cmd;
 	// t_string			*paths;
 	t_sigaction			sa;
 	t_varlist			*vars;

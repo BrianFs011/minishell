@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:57:24 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 19:21:30 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:39:09 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	tml_call(t_ml *tml)
 		pp_call_pipe(tml);
 		tml_free_sprt_cmd(tml->pp_cmd);
 	}
-	if (tml->env)
-		tml_free_sprt_cmd(tml->env);
+	// if (tml->env)
+	// 	tml_free_sprt_cmd(tml->env);
 }
 
 void	tml_loop(t_ml *tml)

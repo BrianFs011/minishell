@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:14:10 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/15 10:07:15 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:46:28 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ static t_bool	condition_for_exit(t_ml *tml)
 
 int	tml_exec_child(t_ml *tml, int *fd)
 {
-	int	exit_status;
+	int			exit_status;
+	t_string	*env_updated;
 
 	exit_status = 0;
 	exit_status = rd_redirection(tml, fd);
@@ -79,11 +80,12 @@ int	tml_exec_child(t_ml *tml, int *fd)
 		exit_status = bt_env(tml->vars);
 	if (condition_for_exit(tml) || exit_status != 0)
 		exit(exit_status);
-	tml->env = tml_construct_env(tml);
+	env_updated = tml_construct_env(tml);
 	// printf("%d\n", exit_status);
-	if (execve(tml->sprt_cmd[0], tml->sprt_cmd, tml->env) == -1)
+	if (execve(tml->sprt_cmd[0], tml->sprt_cmd, env_updated) == -1)
 	{
 		perror("Execve");
+		tml_free_sprt_cmd(env_updated);
 		tml->running = EXIT_SILENCED;
 		exit_status = 1;
 	}
