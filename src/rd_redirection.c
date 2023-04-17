@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 18:09:52 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 19:09:33 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:23:32 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	rd_out(t_ml *tml, int *fd, int *i)
 	return (0);
 }
 
+//desaloca a memória sem passar pelo fluxo de saida do programa
 void	free_tml(t_ml *tml, t_bool save, t_bool free)
 {
 	static t_ml	*tml_save;
@@ -42,7 +43,7 @@ void	free_tml(t_ml *tml, t_bool save, t_bool free)
 	if (free)
 	{
 		vr_delete(&tml_save->cmd_vars);
-		ft_free(tml_save->path);
+		ft_free(tml_save->pwd);
 		ft_free(tml_save->prompt);
 		ft_free(tml_save->cmd);
 		tml_free_uhp(tml_save);

@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 12:00:21 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/07 12:10:22 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:21:30 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	check_cd(t_ml *tml, t_varlist *new_pwd, t_varlist *old_pwd)
 {
 	t_string	message;
 
-	if (chdir(tml->path) != 0)
+	if (chdir(tml->pwd) != 0)
 	{
 		message = ft_strcat("minishell: cd : ", tml->sprt_cmd[1], FALSE, FALSE);
 		perror(message);
@@ -33,8 +33,8 @@ static int	check_cd(t_ml *tml, t_varlist *new_pwd, t_varlist *old_pwd)
 	}
 	else
 	{
-		getcwd(tml->path, ft_strlen(tml->path));
-		new_pwd->value = ft_strcpy(tml->path, FALSE);
+		getcwd(tml->pwd, ft_strlen(tml->pwd));
+		new_pwd->value = ft_strcpy(tml->pwd, FALSE);
 		vr_insert(&tml->vars, *new_pwd);
 		if (!vr_change_value(&tml->vars, *old_pwd))
 			vr_insert(&tml->vars, *old_pwd);
@@ -57,16 +57,16 @@ int	bt_cd(t_ml *tml)
 		return (cd_error("minishell: cd: too many arguments\n", 1));
 	new_pwd.name = ft_strcpy("PWD", FALSE);
 	old_pwd.name = ft_strcpy("OLDPWD", FALSE);
-	old_pwd.value = ft_strcpy(tml->path, FALSE);
+	old_pwd.value = ft_strcpy(tml->pwd, FALSE);
 	if (!tml->sprt_cmd[1])
-		tml->path = ft_strrpc(tml->path,
+		tml->pwd = ft_strrpc(tml->pwd,
 				vr_get_value(tml->vars, "HOME", TRUE), TRUE, TRUE);
 	else
 	{
 		if (tml->sprt_cmd[1][0] == '/')
-			tml->path = ft_strrpc(tml->path, tml->sprt_cmd[1], TRUE, FALSE);
+			tml->pwd = ft_strrpc(tml->pwd, tml->sprt_cmd[1], TRUE, FALSE);
 		else
-			tml->path = ft_strcat(tml->path,
+			tml->pwd = ft_strcat(tml->pwd,
 					ft_strcat("/", tml->sprt_cmd[1], FALSE, FALSE), TRUE, TRUE);
 	}
 	exit_status = check_cd(tml, &new_pwd, &old_pwd);

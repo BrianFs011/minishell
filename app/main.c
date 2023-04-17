@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:57:24 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 19:15:07 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:21:30 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	tml_loop(t_ml *tml)
 	else
 		tml->running = FALSE;
 	vr_delete(&tml->cmd_vars);
-	ft_free(tml->path);
+	ft_free(tml->pwd);
 	ft_free(tml->prompt);
 	ft_free(tml->cmd);
 }

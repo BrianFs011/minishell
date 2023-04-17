@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:49:53 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 19:09:07 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:21:40 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ typedef struct s_ml
 {
 	t_string			user;
 	t_string			host;
-	t_string			path;
+	t_string			pwd;
 	t_string			cmd;
 	t_string			prompt;
 	t_string			*sprt_cmd;
