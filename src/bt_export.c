@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 07:39:31 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/15 07:39:44 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/17 17:04:48 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ int	bt_export(t_ml *tml)
 	}
 	else
 		exit_status = export_from_assigned(tml);
-	vr_print(tml->assigned);
+	// vr_print(tml->assigned);
 	return (exit_status);
 }
