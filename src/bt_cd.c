@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 12:00:21 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 20:12:01 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:37:14 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	check_cd(t_ml *tml, t_varlist *new_pwd, t_varlist *old_pwd)
 
 	if (chdir(tml->pwd) != 0)
 	{
-		message = ft_strcat("minishell: cd : ", tml->sprt_cmd[1], FALSE, FALSE);
+		message = ft_strcat("minishell: cd : ", tml->split_cmd[1], FALSE, FALSE);
 		perror(message);
 		free(message);
 		free(old_pwd->name);
@@ -53,21 +53,21 @@ int	bt_cd(t_ml *tml)
 	t_varlist	old_pwd;
 	int			exit_status;
 
-	if (tml->sprt_cmd[2])
+	if (tml->split_cmd[2])
 		return (cd_error("minishell: cd: too many arguments\n", 1));
 	new_pwd.name = ft_strcpy("PWD", FALSE);
 	old_pwd.name = ft_strcpy("OLDPWD", FALSE);
 	old_pwd.value = ft_strcpy(tml->pwd, FALSE);
-	if (!tml->sprt_cmd[1])
+	if (!tml->split_cmd[1])
 		tml->pwd = ft_strrpc(tml->pwd,
 				vr_get_value(tml->env_vars, "HOME", TRUE), TRUE, TRUE);
 	else
 	{
-		if (tml->sprt_cmd[1][0] == '/')
-			tml->pwd = ft_strrpc(tml->pwd, tml->sprt_cmd[1], TRUE, FALSE);
+		if (tml->split_cmd[1][0] == '/')
+			tml->pwd = ft_strrpc(tml->pwd, tml->split_cmd[1], TRUE, FALSE);
 		else
 			tml->pwd = ft_strcat(tml->pwd,
-					ft_strcat("/", tml->sprt_cmd[1], FALSE, FALSE), TRUE, TRUE);
+					ft_strcat("/", tml->split_cmd[1], FALSE, FALSE), TRUE, TRUE);
 	}
 	exit_status = check_cd(tml, &new_pwd, &old_pwd);
 	free(new_pwd.name);

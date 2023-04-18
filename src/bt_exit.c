@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 08:50:23 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/16 10:37:48 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:37:14 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	bt_exit(t_ml *tml)
 {
-	// printf("%p\n", tml->sprt_cmd[2]);
-	if (!ft_strcmp(tml->sprt_cmd[0], "exit"))
+	// printf("%p\n", tml->split_cmd[2]);
+	if (!ft_strcmp(tml->split_cmd[0], "exit"))
 	{
-		if (tml->sprt_cmd[1] == NULL)
+		if (tml->split_cmd[1] == NULL)
 			tml->running = FALSE;
 		else
 			printf("bash: exit: too many arguments\n");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pp_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:31:44 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/16 18:03:00 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:37:14 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ void	pp_call_pipe(t_ml *tml)
 	tml->i = -1;
 	while (++tml->i <= tml->pp_quant && tml->running == RUNNIG)
 	{
-		tml->sprt_cmd = ft_split(tml->pp_cmd[tml->i], ' ');
+		tml->split_cmd = ft_split(tml->pp_cmd[tml->i], ' ');
 		i = -1;
-		while (tml->sprt_cmd[++i])
+		while (tml->split_cmd[++i])
 		{
-			tml->sprt_cmd[i] = vr_descompress(tml, tml->sprt_cmd[i]);
-			// printf("\001\033[32m\002sprt\001\033[0m\002: |%s|\n", tml->sprt_cmd[i]);
+			tml->split_cmd[i] = vr_descompress(tml, tml->split_cmd[i]);
+			// printf("\001\033[32m\002sprt\001\033[0m\002: |%s|\n", tml->split_cmd[i]);
 		}
 		check_empty_line(tml);
 		fk_call_new_process(tml);
-		tml_free_sprt_cmd(tml->sprt_cmd);
+		tml_free_sprt_cmd(tml->split_cmd);
 	}
 	fk_wait_execs(tml);// rever localização
 	if (tml->pp_quant > 0)

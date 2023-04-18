@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:49:53 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 20:11:35 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:37:20 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,17 @@ typedef struct s_ml
 	/* User input */
 	t_string			cmd;
 	t_string			*pp_cmd;
-	t_string			*sprt_cmd;
+	t_string			*split_cmd;
 
 	/* Variables */
 	t_varlist			*local_vars;
 	t_varlist			*env_vars;
-	t_varlist			*cmd_vars;
+	t_varlist			*quotes_vars;
 
 
 	t_varlist			*pid_list;
-	t_string			temp;
+
+	// t_string			temp;
 	t_sigaction			sa;
 	int					running;
 	int					pp_quant;

@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 07:39:31 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 20:12:01 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:37:14 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	bt_export(t_ml *tml)
 	exit_status = 0;
 	if (ft_cc(tml->cmd, '='))
 	{
-		var = vr_get_name_value(tml->sprt_cmd[1]);
+		var = vr_get_name_value(tml->split_cmd[1]);
 		if (!ft_strisalpha(var.name))
 		{
 			free(var.name);

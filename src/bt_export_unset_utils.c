@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 07:40:08 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 20:12:01 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:37:14 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ int	export_from_local_vars(t_ml *tml)
 
 	before = NULL;
 	temp = tml->local_vars;
-	if (!ft_strisalpha(tml->sprt_cmd[1]))
+	if (!ft_strisalpha(tml->split_cmd[1]))
 		return (1);
 	while (temp)
 	{
-		if (!ft_strcmp(temp->name, tml->sprt_cmd[1]))
+		if (!ft_strcmp(temp->name, tml->split_cmd[1]))
 		{
 			vr_insert(&(tml->env_vars), *temp);
 			remove_no(&(tml->local_vars), &temp, &before);

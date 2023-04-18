@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:45:34 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 16:05:12 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:37:14 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ void	check_empty_line(t_ml *tml)
 	int			i;
 
 	i = -1;
-	while (tml->sprt_cmd[++i])
+	while (tml->split_cmd[++i])
 	{
-		if (!ft_strcmp(tml->sprt_cmd[i], "") && tml->sprt_cmd[i + 1])
+		if (!ft_strcmp(tml->split_cmd[i], "") && tml->split_cmd[i + 1])
 		{
-			aux = tml->sprt_cmd[i];
-			tml->sprt_cmd[i] = tml->sprt_cmd[i + 1];
-			tml->sprt_cmd[i + 1] = aux;
+			aux = tml->split_cmd[i];
+			tml->split_cmd[i] = tml->split_cmd[i + 1];
+			tml->split_cmd[i + 1] = aux;
 		}
 	}
 }
@@ -63,7 +63,7 @@ t_string	get_var(t_ml *tml, t_string string, int *i)
 		&& string[*i] != '\'' && string[*i] != '/' && ft_isdigit(string[*i]))
 		;
 	name = ft_substr(string, j + 1, (*i) - j - 1);
-	value = vr_get_value(tml->cmd_vars, name, TRUE);
+	value = vr_get_value(tml->quotes_vars, name, TRUE);
 	free(name);
 	(*i)--;
 	if (!ft_strcmp(value, ""))

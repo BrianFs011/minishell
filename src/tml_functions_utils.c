@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:21:41 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 20:12:01 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:37:14 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ int	tml_find_exec(t_ml *tml)
 	paths = init_path(tml->env_vars);
 	while (paths[++i] && check != 0)
 	{
-		temp = ft_strcat(paths[i], ft_strcat("/", tml->sprt_cmd[0],
+		temp = ft_strcat(paths[i], ft_strcat("/", tml->split_cmd[0],
 					FALSE, FALSE), FALSE, TRUE);
 		if (access(temp, X_OK) == 0)
 		{
-			tml->sprt_cmd[0] = ft_strrpc(tml->sprt_cmd[0], temp, TRUE, TRUE);
+			tml->split_cmd[0] = ft_strrpc(tml->split_cmd[0], temp, TRUE, TRUE);
 			check = 0;
 		}
 		else
@@ -65,6 +65,6 @@ int	tml_find_exec(t_ml *tml)
 	}
 	tml_free_sprt_cmd(paths);
 	if (check)
-		printf("minishell: %s: command not found\n", tml->sprt_cmd[0]);
+		printf("minishell: %s: command not found\n", tml->split_cmd[0]);
 	return (check);
 }

@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:41:58 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 20:12:01 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:37:14 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_string	vr_descompress(t_ml *tml, t_string string)
 	j = -1;
 	new_string = NULL;
 	temp = malloc(sizeof(char) * ft_strlen(string) + 1);
-	// printf("\033[32m%s\033[0m\n", tml->sprt_cmd[i]);
+	// printf("\033[32m%s\033[0m\n", tml->split_cmd[i]);
 	while (string[++i])
 	{
 		if (new_string && string[i] != '$')
