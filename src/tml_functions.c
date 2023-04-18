@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:14:10 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 20:37:14 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/18 19:43:02 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	tml_exec_father(t_ml *tml)
 			exit_status = bt_unset(&tml->local_vars, tml->split_cmd[1]);
 	if (ft_cc(tml->cmd, '=') && !tml->split_cmd[1] && !tml->pp_cmd[1])
 		exit_status = vr_new_assignment(tml);
+	printf("%d\n", exit_status);
 	return (exit_status);
 }
 

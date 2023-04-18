@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:45:34 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 20:37:14 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/18 18:48:57 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,21 @@ t_string	get_var(t_ml *tml, t_string string, int *i)
 	else
 		value = ft_strrpc(value, ft_substr(value, 1,
 					ft_strlen(value) - 2), TRUE, TRUE);
+	return (value);
+}
+
+t_string	get_exit_status_var(t_varlist *start, t_string string, int *i)
+{
+	t_string	value;
+	int			j;
+
+	j = (*i);
+	if (string[++j] && string[j] == '?')
+	{
+		value = vr_get_value(start, "?", TRUE);
+		(*i) = j;
+	}
+	else
+		value = ft_strcpy("", FALSE);
 	return (value);
 }
