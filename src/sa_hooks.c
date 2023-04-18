@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 15:33:53 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/15 11:57:15 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/17 21:13:50 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ static void	handle_interrupt(int signal)
 	}
 }
 
-void	sa_hooks(t_sigaction *action)
+void	sa_hooks()
 {
-	signal_hook(action, handle_interrupt, SIGINT);
-	signal_hook(action, SIG_IGN, SIGQUIT);
+	t_sigaction	action;
+
+	signal_hook(&action, handle_interrupt, SIGINT);
+	signal_hook(&action, SIG_IGN, SIGQUIT);
 }

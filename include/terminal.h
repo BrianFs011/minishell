@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:49:53 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 20:37:20 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/17 21:14:38 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,15 @@ typedef struct s_ml
 
 	t_varlist			*pid_list;
 
-	// t_string			temp;
-	t_sigaction			sa;
 	int					running;
+	int					exit_status;
+
 	int					pp_quant;
 	int					**pp_lpipes;
 	int					fd_pipe[2];
 	int					i;
-	int					exit_status;
+	// t_sigaction			sigaction;
+	// t_string			temp;
 	// t_string			*env;
 	// t_string			*paths;
 }t_ml;
