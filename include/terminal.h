@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   terminal.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:49:53 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 21:14:38 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/18 19:27:57 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_ml
 	t_varlist			*quotes_vars;
 
 
-	t_varlist			*pid_list;
+	t_list				*pid_list;
 
 	int					running;
 	int					exit_status;
