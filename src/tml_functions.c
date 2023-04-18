@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:14:10 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 19:46:28 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:12:01 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	tml_exec_father(t_ml *tml)
 	if (!ft_strcmp(tml->sprt_cmd[0], "export") && !tml->pp_cmd[1])
 		exit_status = bt_export(tml);
 	if (!ft_strcmp(tml->sprt_cmd[0], "unset") && !tml->pp_cmd[1])
-		if (!bt_unset(&tml->vars, tml->sprt_cmd[1]))
-			exit_status = bt_unset(&tml->assigned, tml->sprt_cmd[1]);
+		if (!bt_unset(&tml->env_vars, tml->sprt_cmd[1]))
+			exit_status = bt_unset(&tml->local_vars, tml->sprt_cmd[1]);
 	if (ft_cc(tml->cmd, '=') && !tml->sprt_cmd[1] && !tml->pp_cmd[1])
 		exit_status = vr_new_assignment(tml);
 	return (exit_status);
@@ -77,11 +77,10 @@ int	tml_exec_child(t_ml *tml, int *fd)
 	if (!ft_strcmp(tml->sprt_cmd[0], "echo") && exit_status == 0)
 		exit_status = bt_echo(tml->sprt_cmd);
 	if (!ft_strcmp(tml->sprt_cmd[0], "env") && exit_status == 0)
-		exit_status = bt_env(tml->vars);
+		exit_status = bt_env(tml->env_vars);
 	if (condition_for_exit(tml) || exit_status != 0)
 		exit(exit_status);
 	env_updated = tml_construct_env(tml);
-	// printf("%d\n", exit_status);
 	if (execve(tml->sprt_cmd[0], tml->sprt_cmd, env_updated) == -1)
 	{
 		perror("Execve");

@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 07:09:40 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/15 11:55:26 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:04:54 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ int	ck_redictions(t_ml *tml)
 			{
 				exit_status = 2;
 				after = "syntax error near unexpected token `newline'\n";
-				tml_exit_status(&tml->assigned, exit_status, FALSE);
+				tml_exit_status(&tml->local_vars, exit_status, FALSE);
 				free(new);
 				return (tml_set_exit_status(after, exit_status));
 			}

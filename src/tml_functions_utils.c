@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:21:41 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 19:14:37 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:12:01 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_string	*tml_construct_env(t_ml *tml)
 	t_varlist		*temp;
 	t_string		*env;
 
-	temp = tml->vars;
+	temp = tml->env_vars;
 	env = malloc(sizeof(t_string) * temp->size + sizeof(t_string));
 	i = -1;
 	while (temp)
@@ -50,7 +50,7 @@ int	tml_find_exec(t_ml *tml)
 
 	i = -1;
 	check = 127;
-	paths = init_path(tml->vars);
+	paths = init_path(tml->env_vars);
 	while (paths[++i] && check != 0)
 	{
 		temp = ft_strcat(paths[i], ft_strcat("/", tml->sprt_cmd[0],

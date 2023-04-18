@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:58:48 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 19:21:30 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:12:01 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	tml_create_uhp_line(t_ml *tml)
 {
-	tml->pwd = vr_get_value(tml->vars, "PWD", TRUE);
+	tml->pwd = vr_get_value(tml->env_vars, "PWD", TRUE);
 	tml->prompt = ft_strcpy(PINK, FALSE);
 	tml->prompt = ft_strcat(tml->prompt, tml->user, TRUE, FALSE);
 	tml->prompt = ft_strcat(tml->prompt, "@", TRUE, FALSE);

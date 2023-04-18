@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   br_pwd.c                                           :+:      :+:    :+:   */
+/*   bt_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 07:31:24 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/15 07:31:46 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:12:01 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	bt_pwd(t_ml *tml)
 	t_string	value;
 
 	name = ft_strcpy("PWD", FALSE);
-	value = vr_get_value(tml->vars, name, true);
+	value = vr_get_value(tml->env_vars, name, true);
 	printf("%s\n", value);
 	free(value);
 	free(name);

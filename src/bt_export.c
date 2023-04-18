@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 07:39:31 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 17:04:48 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:12:01 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	bt_export(t_ml *tml)
 			free(var.value);
 			return (1);
 		}
-		if (!vr_change_value(&(tml->vars), var))
-			vr_insert(&(tml->vars), var);
+		if (!vr_change_value(&(tml->env_vars), var))
+			vr_insert(&(tml->env_vars), var);
 		else
 		{
 			free(var.name);
@@ -36,7 +36,7 @@ int	bt_export(t_ml *tml)
 		}
 	}
 	else
-		exit_status = export_from_assigned(tml);
-	// vr_print(tml->assigned);
+		exit_status = export_from_local_vars(tml);
+	// vr_print(tml->local_vars);
 	return (exit_status);
 }

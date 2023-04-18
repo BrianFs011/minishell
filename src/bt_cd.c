@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 12:00:21 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 19:21:30 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:12:01 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ static int	check_cd(t_ml *tml, t_varlist *new_pwd, t_varlist *old_pwd)
 	{
 		getcwd(tml->pwd, ft_strlen(tml->pwd));
 		new_pwd->value = ft_strcpy(tml->pwd, FALSE);
-		vr_insert(&tml->vars, *new_pwd);
-		if (!vr_change_value(&tml->vars, *old_pwd))
-			vr_insert(&tml->vars, *old_pwd);
+		vr_insert(&tml->env_vars, *new_pwd);
+		if (!vr_change_value(&tml->env_vars, *old_pwd))
+			vr_insert(&tml->env_vars, *old_pwd);
 		else
 		{
 			free(old_pwd->name);
@@ -60,7 +60,7 @@ int	bt_cd(t_ml *tml)
 	old_pwd.value = ft_strcpy(tml->pwd, FALSE);
 	if (!tml->sprt_cmd[1])
 		tml->pwd = ft_strrpc(tml->pwd,
-				vr_get_value(tml->vars, "HOME", TRUE), TRUE, TRUE);
+				vr_get_value(tml->env_vars, "HOME", TRUE), TRUE, TRUE);
 	else
 	{
 		if (tml->sprt_cmd[1][0] == '/')

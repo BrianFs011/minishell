@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fk_fork_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:08:06 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/16 18:03:04 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:04:54 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,5 @@ void	fk_wait_execs(t_ml *tml)
 	}
 	vr_delete(&tml->pid_list);
 	tml->pid_list = NULL;
-	tml_exit_status(&tml->assigned, new_exit_code, FALSE);
+	tml_exit_status(&tml->local_vars, new_exit_code, FALSE);
 }

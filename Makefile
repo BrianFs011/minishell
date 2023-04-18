@@ -20,7 +20,7 @@ SRCS		= ft_str.c fk_fork_utils.c tml_functions.c fl_file.c \
 			  pp_pipe.c sa_sigaction.c sa_hooks.c vr_linked_list.c \
 				vr_vars.c tml_init.c ft_str2.c \
 				vr_descompress.c vr_descompress_utils.c \
-				vr_assigned.c tml_functions_utils.c \
+				vr_local_vars.c tml_functions_utils.c \
 				ft_utils.c tml_exit_status.c \
 				tml_prompt.c $(BUILTINS) $(CHECKS)
 

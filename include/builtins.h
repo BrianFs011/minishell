@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 09:08:22 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/15 08:17:03 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:06:10 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,6 @@ void		remove_no(t_varlist **start, t_varlist **temp, t_varlist **before);
 /// @brief Find by local variable and difine as environment
 /// @param tml struct t_ml
 /// @return exit status
-int			export_from_assigned(t_ml *tml);
+int			export_from_local_vars(t_ml *tml);
 
 #endif
