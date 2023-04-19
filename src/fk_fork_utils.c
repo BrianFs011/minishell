@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   fk_fork_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:08:06 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/18 20:02:57 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/04/18 20:45:17 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+
+typedef struct s_teste
+{
+
+}t_teste;
 
 void	fk_call_new_process(t_ml *tml)
 {
@@ -32,7 +37,7 @@ void	fk_call_new_process(t_ml *tml)
 			close(fd);
 		if (tml->pp_quant != 0 && !(tml->i == tml->pp_quant))
 			close(tml->pp_lpipes[tml->i][1]);
-		tml_exec_father(tml);
+		// tml_exec_father(tml);
 		tml->exit_status = 0;
 		g_pid = G_FATHER;
 	}

@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:14:10 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/18 19:43:02 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/18 20:39:26 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int	tml_exec_father(t_ml *tml)
 {
 	int	exit_status;
 
-	exit_status = 0;
+	// exit_status = 0;
+	exit_status = -1;
 	if (!ft_strcmp(tml->split_cmd[0], "exit") && !ft_cc(tml->cmd, '|'))
 		exit_status = bt_exit(tml);
 	if (!ft_strcmp(tml->split_cmd[0], "cd"))
