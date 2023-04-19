@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 07:39:31 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 20:37:14 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/18 20:54:32 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	bt_export(t_ml *tml)
 			return (1);
 		}
 		if (!vr_change_value(&(tml->env_vars), var))
-			vr_insert(&(tml->env_vars), var);
+			vr_update_insert(&(tml->env_vars), var);
 		else
 		{
 			free(var.name);

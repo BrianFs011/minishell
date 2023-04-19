@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 14:44:59 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/04 10:02:57 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/18 20:54:32 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_varlist	vr_get_name_value(t_string variables);
 /// @brief Insert in linked list
 /// @param start Adress struct t_varlist
 /// @param var t_varlist with content
-void		vr_insert(t_varlist **start, t_varlist var);
+void		vr_update_insert(t_varlist **start, t_varlist var);
 
 /// @brief Print linked list
 /// @param start Init from list
