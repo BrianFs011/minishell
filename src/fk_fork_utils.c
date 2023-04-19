@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:08:06 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/18 20:56:14 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/19 17:33:05 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,21 @@ void	fk_wait_execs(t_ml *tml)
 	temp = tml->pid_list;
 	while (temp)
 	{
-		pid = ft_atoi(temp->value);
-		waitpid(pid, &new_exit_code, 0);
-		new_exit_code = WEXITSTATUS(new_exit_code);
+		if (!ft_strcmp(temp->name, "pid"))
+		{
+			pid = ft_atoi(temp->value);
+			waitpid(pid, &new_exit_code, 0);
+			new_exit_code = WEXITSTATUS(new_exit_code);
+		}
+		else
+			new_exit_code = ft_atoi(temp->value);
 		// pp_error(tml, &status);
 		temp = temp->next;
 	}
+	// vr_print(tml->pid_list);
 	vr_delete(&tml->pid_list);
 	tml->pid_list = NULL;
 	tml_exit_status(&tml->local_vars, new_exit_code, FALSE);
+	tml->exit_status = new_exit_code;
+	errno = new_exit_code;
 }
