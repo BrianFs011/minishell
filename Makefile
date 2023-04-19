@@ -40,7 +40,7 @@ $(OBJ)/%.o: $(SRC)/%.c
 	$(CC) -c $(FLAGS) $(HEADER) $< -o $@
 
 $(LIBFT):
-	make -C $(LIB)/libft bonus
+	make -C $(LIB)/libft
 
 $(FOLDERS):
 	mkdir $@
@@ -67,7 +67,7 @@ clean:
 fclean: clean
 	rm -rf $(BIN)
 	rm -rf $(LIB)/libminishell.a
-	make fclean -C $(LIB)/libft
+#make fclean -C $(LIB)/libft
 
 re: fclean all
 
