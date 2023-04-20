@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 20:27:47 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/16 18:06:32 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/04/20 09:08:52 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,12 @@ void		fk_wait_execs(t_ml *tml);
 /// @param path Path from file text
 /// @return t_string with text
 t_string	fl_get_text(t_string path);
+
+/// @brief Search for $?
+/// @param start t_varlist to get value of $?
+/// @param string t_string
+/// @param i int position in string
+/// @return Value $? or ""
+t_string	get_exit_status_var(t_varlist *start, t_string string, int *i);
 
 #endif
