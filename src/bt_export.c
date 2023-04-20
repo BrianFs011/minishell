@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 07:39:31 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/19 19:26:05 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/19 19:59:51 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ int	bt_export(t_ml *tml)
 	var = vr_get_name_value(tml->split_cmd[1]);
 	if (!ft_strisalpha(var.name))
 	{
-		// dup(STDERR_FILENO);
-		// printf(" not a valid identifier\n");
-		// dup(STDOUT_FILENO);
-		write(STDERR_FILENO, " not a valid identifier\n", 25);
+		ft_putendl_fd("minishell: export: not a valid identifier", STDERR_FILENO);
 		free(var.name);
 		free(var.value);
 		return (1);

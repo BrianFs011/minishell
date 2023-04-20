@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:14:10 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/19 19:09:49 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/19 19:47:52 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	tml_exec_child(t_ml *tml, int *fd)
 	if (!ft_strcmp(tml->split_cmd[0], "echo") && exit_status == 0)
 	{
 		exit_status = bt_echo(tml->split_cmd);
-		exit_status = tml->exit_status;
+		// exit_status = tml->exit_status;
 	}
 	if (!ft_strcmp(tml->split_cmd[0], "env") && exit_status == 0)
 		exit_status = bt_env(tml->env_vars);
