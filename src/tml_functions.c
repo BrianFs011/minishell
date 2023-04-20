@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:14:10 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/20 09:21:55 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/19 19:47:52 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	tml_exec_father(t_ml *tml)
 	{
 		var.name = ft_strcpy("status", FALSE);
 		var.value = ft_strcpy(ft_itoa(exit_status), TRUE);
-		vr_insert(&tml->pid_list, var, TRUE, TRUE);
+		vr_insert(&tml->pid_list, var);
 	}
 	return (exit_status);
 }
