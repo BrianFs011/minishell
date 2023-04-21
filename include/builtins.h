@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 09:08:22 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 20:06:10 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/21 15:04:22 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int			bt_export(t_ml *tml);
 /// @param start struct varlist with start node
 /// @param string t_string with name from variable
 /// @return exit status
-t_bool		bt_unset(t_varlist **start, t_string string);
+int			bt_unset(t_varlist **start, t_string string);
 
 /// @brief Remove one node from linked list
 /// @param start struct varlist with start node
