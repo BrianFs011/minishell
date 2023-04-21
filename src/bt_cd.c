@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 12:00:21 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 20:37:14 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/20 17:10:17 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,15 @@ static int	cd_error(t_string msg, int error_type)
 
 static int	check_cd(t_ml *tml, t_varlist *new_pwd, t_varlist *old_pwd)
 {
-	t_string	message;
+	// t_string	message;
 
 	if (chdir(tml->pwd) != 0)
 	{
-		message = ft_strcat("minishell: cd : ", tml->split_cmd[1], FALSE, FALSE);
-		perror(message);
-		free(message);
+		// message = ft_strcat("minishell: cd : ", tml->split_cmd[1], FALSE, FALSE);
+		ft_putendl_fd("minishell: cd: too many arguments",
+			STDERR_FILENO);
+		// perror(message);
+		// free(message);
 		free(old_pwd->name);
 		free(old_pwd->value);
 		return (1);
@@ -35,9 +37,9 @@ static int	check_cd(t_ml *tml, t_varlist *new_pwd, t_varlist *old_pwd)
 	{
 		getcwd(tml->pwd, ft_strlen(tml->pwd));
 		new_pwd->value = ft_strcpy(tml->pwd, FALSE);
-		vr_insert(&tml->env_vars, *new_pwd);
+		vr_update_insert(&tml->env_vars, *new_pwd);
 		if (!vr_change_value(&tml->env_vars, *old_pwd))
-			vr_insert(&tml->env_vars, *old_pwd);
+			vr_update_insert(&tml->env_vars, *old_pwd);
 		else
 		{
 			free(old_pwd->name);

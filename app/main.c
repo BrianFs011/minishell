@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:57:24 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 21:13:56 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/21 16:17:35 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	main(int argc, t_string *argv, t_string *env)
 	vr_delete(&tml.local_vars);
 	vr_delete(&tml.env_vars);
 	rl_clear_history();
-	if (tml.running == EXIT)
-		printf("0\n");
+	// if (tml.running == EXIT)
+	// 	printf("exit\n");
 	return (tml.exit_status);
 }

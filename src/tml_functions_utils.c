@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tml_functions_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:21:41 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 20:37:14 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/21 15:02:44 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,9 @@ int	tml_find_exec(t_ml *tml)
 	}
 	tml_free_sprt_cmd(paths);
 	if (check)
-		printf("minishell: %s: command not found\n", tml->split_cmd[0]);
+	{
+		// printf("minishell: %s: command not found\n", tml->split_cmd[0]);
+		ft_print_error(tml->split_cmd[0], ": command not found", FALSE);
+	}
 	return (check);
 }

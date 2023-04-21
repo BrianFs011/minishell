@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tml_functions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:14:10 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 20:37:14 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/21 17:57:29 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 int	tml_exec_father(t_ml *tml)
 {
-	int	exit_status;
+	int			exit_status;
+	t_varlist	var;
 
-	exit_status = 0;
+	exit_status = -1;
 	if (!ft_strcmp(tml->split_cmd[0], "exit") && !ft_cc(tml->cmd, '|'))
 		exit_status = bt_exit(tml);
 	if (!ft_strcmp(tml->split_cmd[0], "cd"))
@@ -24,10 +25,27 @@ int	tml_exec_father(t_ml *tml)
 	if (!ft_strcmp(tml->split_cmd[0], "export") && !tml->pp_cmd[1])
 		exit_status = bt_export(tml);
 	if (!ft_strcmp(tml->split_cmd[0], "unset") && !tml->pp_cmd[1])
-		if (!bt_unset(&tml->env_vars, tml->split_cmd[1]))
-			exit_status = bt_unset(&tml->local_vars, tml->split_cmd[1]);
+	{
+		exit_status = bt_unset(&tml->env_vars, tml->split_cmd[1]);
+		// if (!tml->split_cmd[1])
+		// 	exit_status = 0;
+		// else
+		// {
+			// printf("%d\n", exit_status);
+			// vr_print(tml->env_vars);
+			// if (exit_status)
+			// 	exit_status = bt_unset(&tml->local_vars, tml->split_cmd[1]);
+			// printf("%d\n", exit_status);
+		// }
+	}
 	if (ft_cc(tml->cmd, '=') && !tml->split_cmd[1] && !tml->pp_cmd[1])
 		exit_status = vr_new_assignment(tml);
+	if (exit_status != -1)
+	{
+		var.name = ft_strcpy("status", FALSE);
+		var.value = ft_strcpy(ft_itoa(exit_status), TRUE);
+		vr_insert(&tml->pid_list, var, TRUE, TRUE);
+	}
 	return (exit_status);
 }
 
@@ -75,7 +93,10 @@ int	tml_exec_child(t_ml *tml, int *fd)
 	if (!ft_strcmp(tml->split_cmd[0], "pwd") && exit_status == 0)
 		exit_status = bt_pwd(tml);
 	if (!ft_strcmp(tml->split_cmd[0], "echo") && exit_status == 0)
+	{
 		exit_status = bt_echo(tml->split_cmd);
+		// exit_status = tml->exit_status;
+	}
 	if (!ft_strcmp(tml->split_cmd[0], "env") && exit_status == 0)
 		exit_status = bt_env(tml->env_vars);
 	if (condition_for_exit(tml) || exit_status != 0)
