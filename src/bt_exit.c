@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 08:50:23 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 20:37:14 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/19 17:35:18 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@ int	bt_exit(t_ml *tml)
 		else
 			printf("bash: exit: too many arguments\n");
 	}
-	return (0);
+	return (tml->exit_status);
 }

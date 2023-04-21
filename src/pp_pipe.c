@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:31:44 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 20:37:14 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/18 21:00:19 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,15 @@ void	pp_call_pipe(t_ml *tml)
 			// printf("\001\033[32m\002sprt\001\033[0m\002: |%s|\n", tml->split_cmd[i]);
 		}
 		check_empty_line(tml);
-		fk_call_new_process(tml);
+		if ((!ft_strcmp(tml->split_cmd[0], "exit") && !ft_cc(tml->cmd, '|'))
+			|| !ft_strcmp(tml->split_cmd[0], "cd")
+			|| (!ft_strcmp(tml->split_cmd[0], "export") && !tml->pp_cmd[1])
+			|| (!ft_strcmp(tml->split_cmd[0], "unset") && !tml->pp_cmd[1])
+			|| (ft_cc(tml->cmd, '=') && !tml->split_cmd[1] && !tml->pp_cmd[1])
+		)
+			tml_exec_father(tml);
+		else
+			fk_call_new_process(tml);
 		tml_free_sprt_cmd(tml->split_cmd);
 	}
 	fk_wait_execs(tml);// rever localização

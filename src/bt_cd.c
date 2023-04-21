@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 12:00:21 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 20:37:14 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/18 20:54:32 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ static int	check_cd(t_ml *tml, t_varlist *new_pwd, t_varlist *old_pwd)
 	{
 		getcwd(tml->pwd, ft_strlen(tml->pwd));
 		new_pwd->value = ft_strcpy(tml->pwd, FALSE);
-		vr_insert(&tml->env_vars, *new_pwd);
+		vr_update_insert(&tml->env_vars, *new_pwd);
 		if (!vr_change_value(&tml->env_vars, *old_pwd))
-			vr_insert(&tml->env_vars, *old_pwd);
+			vr_update_insert(&tml->env_vars, *old_pwd);
 		else
 		{
 			free(old_pwd->name);
