@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tml_functions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:14:10 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/21 17:57:29 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/04/21 17:24:43 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	tml_exec_father(t_ml *tml)
 	if (!ft_strcmp(tml->split_cmd[0], "unset") && !tml->pp_cmd[1])
 	{
 		exit_status = bt_unset(&tml->env_vars, tml->split_cmd[1]);
+		exit_status = bt_unset(&tml->local_vars, tml->split_cmd[1]);
 		// if (!tml->split_cmd[1])
 		// 	exit_status = 0;
 		// else
