@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bt_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 07:37:39 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/15 07:38:24 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/21 17:23:07 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ t_bool	bt_unset(t_varlist **start, t_string string)
 		if (!ft_strcmp(temp->name, string))
 		{
 			remove_no(start, &temp, &before);
-			return (TRUE);
+			return (0);
 		}
 		before = temp;
 		temp = temp->next;
 	}
-	return (FALSE);
+	return (0);
 }
