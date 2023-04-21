@@ -6,7 +6,7 @@
 /*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 07:39:31 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/21 13:55:09 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/04/21 14:45:55 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	bt_export(t_ml *tml)
 	var = vr_get_name_value(tml->split_cmd[1]);
 	if (!ft_strisalpha(var.name) || !*var.name)
 	{
-		ft_putendl_fd("minishell: export: not a valid identifier", STDERR_FILENO);
+		ft_print_error(ft_strjoin("export: `", tml->split_cmd[1]), "': not a valid identifier", TRUE);
 		free(var.name);
 		free(var.value);
 		return (1);
