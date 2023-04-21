@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 07:40:08 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/18 20:54:32 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/21 16:42:39 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	remove_no(t_varlist **start, t_varlist **temp, t_varlist **before)
 	}
 	else
 	{
-		free((*start)->name);
-		free((*start)->value);
-		free((*start));
-		(*start) = NULL;
+		(*start) = (*temp)->next;
+		free((*temp)->name);
+		free((*temp)->value);
+		free((*temp));
 	}
 }
 

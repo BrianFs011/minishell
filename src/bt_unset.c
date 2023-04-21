@@ -6,17 +6,23 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 07:37:39 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/15 07:38:24 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/21 15:15:24 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-t_bool	bt_unset(t_varlist **start, t_string string)
+int	bt_unset(t_varlist **start, t_string string)
 {
 	t_varlist	*temp;
 	t_varlist	*before;
+	// t_string	a;
 
+	// a = ft_strcpy("", TRUE);
+	// printf("%s", a);
+	// free(a);
+	if (!string)
+		return (0);
 	temp = (*start);
 	before = NULL;
 	while (temp)
@@ -24,10 +30,10 @@ t_bool	bt_unset(t_varlist **start, t_string string)
 		if (!ft_strcmp(temp->name, string))
 		{
 			remove_no(start, &temp, &before);
-			return (TRUE);
+			// return (0);
 		}
 		before = temp;
 		temp = temp->next;
 	}
-	return (FALSE);
+	return (0);
 }

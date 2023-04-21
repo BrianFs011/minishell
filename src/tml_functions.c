@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:14:10 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/19 19:47:52 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/21 15:15:36 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,26 @@ int	tml_exec_father(t_ml *tml)
 	if (!ft_strcmp(tml->split_cmd[0], "export") && !tml->pp_cmd[1])
 		exit_status = bt_export(tml);
 	if (!ft_strcmp(tml->split_cmd[0], "unset") && !tml->pp_cmd[1])
-		if (!bt_unset(&tml->env_vars, tml->split_cmd[1]))
-			exit_status = bt_unset(&tml->local_vars, tml->split_cmd[1]);
+	{
+		exit_status = bt_unset(&tml->env_vars, tml->split_cmd[1]);
+		// if (!tml->split_cmd[1])
+		// 	exit_status = 0;
+		// else
+		// {
+			// printf("%d\n", exit_status);
+			// vr_print(tml->env_vars);
+			// if (exit_status)
+			// 	exit_status = bt_unset(&tml->local_vars, tml->split_cmd[1]);
+			// printf("%d\n", exit_status);
+		// }
+	}
 	if (ft_cc(tml->cmd, '=') && !tml->split_cmd[1] && !tml->pp_cmd[1])
 		exit_status = vr_new_assignment(tml);
 	if (exit_status != -1)
 	{
 		var.name = ft_strcpy("status", FALSE);
 		var.value = ft_strcpy(ft_itoa(exit_status), TRUE);
-		vr_insert(&tml->pid_list, var);
+		vr_insert(&tml->pid_list, var, TRUE, TRUE);
 	}
 	return (exit_status);
 }

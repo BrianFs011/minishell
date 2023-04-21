@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:08:06 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/19 17:33:05 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/20 17:04:18 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ void	fk_call_new_process(t_ml *tml)
 		g_pid = pid;
 		var.name = ft_strcpy("pid", FALSE);
 		var.value = ft_strcpy(ft_itoa(pid), TRUE);
-		vr_insert(&tml->pid_list, var);
+		vr_insert(&tml->pid_list, var, TRUE, TRUE);
 		if (fd != -10)
 			close(fd);
 		if (tml->pp_quant != 0 && !(tml->i == tml->pp_quant))
 			close(tml->pp_lpipes[tml->i][1]);
-		tml->exit_status = 0;
+		// tml->exit_status = 0;
 		g_pid = G_FATHER;
 	}
 	else
@@ -67,5 +67,4 @@ void	fk_wait_execs(t_ml *tml)
 	tml->pid_list = NULL;
 	tml_exit_status(&tml->local_vars, new_exit_code, FALSE);
 	tml->exit_status = new_exit_code;
-	errno = new_exit_code;
 }
