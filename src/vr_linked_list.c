@@ -6,13 +6,14 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 18:50:55 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/18 20:55:19 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/20 09:22:37 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	vr_insert(t_varlist **start, t_varlist var)
+void	vr_insert(t_varlist **start, t_varlist var,
+	t_bool free_name, t_bool free_value)
 {
 	t_varlist	*new_var;
 	t_varlist	*temp;
@@ -25,8 +26,8 @@ void	vr_insert(t_varlist **start, t_varlist var)
 		temp = temp->next;
 	}
 	new_var = malloc(sizeof(t_varlist));
-	new_var->name = ft_strcpy(var.name, TRUE);
-	new_var->value = ft_strcpy(var.value, TRUE);
+	new_var->name = ft_strcpy(var.name, free_name);
+	new_var->value = ft_strcpy(var.value, free_value);
 	new_var->size = 0;
 	new_var->next = NULL;
 	if (!(*start))

@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:41:58 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 20:37:14 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/20 09:11:17 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ static t_string	check_env_or_var(t_ml *tml, t_string new_string,
 
 	if (!new_string)
 		new_string = ft_substr(string, 0, (*i));
-	value = get_env(tml->env_vars, string, i);
+	value = get_exit_status_var(tml->local_vars, string, i);
+	if (!ft_strcmp(value, ""))
+		value = get_env(tml->env_vars, string, i);
 	if (!ft_strcmp(value, ""))
 		value = ft_strrpc(value, get_env(tml->local_vars, string, i), TRUE, TRUE);
 	if (!ft_strcmp(value, ""))
