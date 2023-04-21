@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 08:49:39 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 20:37:14 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/18 20:54:32 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	vr_new_assignment(t_ml *tml)
 	if (!vr_change_value(&(tml->env_vars), var))
 	{
 		if (!vr_change_value(&(tml->local_vars), var))
-			vr_insert(&(tml->local_vars), var);
+			vr_update_insert(&(tml->local_vars), var);
 		else
 		{
 			free(var.name);

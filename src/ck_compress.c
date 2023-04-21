@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 12:12:31 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 20:26:28 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/18 20:54:32 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	ck_compress(t_ml *tml, int *i, char c)
 		new_cmd = ft_substr(tml->cmd, 0, temp_i);
 		new_cmd = ft_strcat(new_cmd, ft_strcat("$", cmd_var.name, FALSE, FALSE),
 				TRUE, TRUE);
-		vr_insert(&tml->quotes_vars, cmd_var);
+		vr_update_insert(&tml->quotes_vars, cmd_var);
 		new_cmd = ft_strcat(new_cmd, ft_substr(tml->cmd, (*i) + 1,
 					ft_strlen(tml->cmd) - (*i)), TRUE, TRUE);
 		tml->cmd = ft_strrpc(tml->cmd, new_cmd, TRUE, TRUE);

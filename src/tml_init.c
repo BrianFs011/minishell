@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:53:50 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 20:26:28 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/18 20:54:32 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	tml_init(int argc, t_string *argv, t_string *env, t_ml *tml)
 	tml->local_vars = NULL;
 	tml->pid_list = NULL;
 	while (env[++i])
-		vr_insert(&tml->env_vars, vr_get_name_value(env[i]));
+		vr_update_insert(&tml->env_vars, vr_get_name_value(env[i]));
 	tml_exit_status(&tml->local_vars, 0, TRUE);
 	// tml->paths = init_path(tml->env_vars);
 	tml->running = RUNNIG;

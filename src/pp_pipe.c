@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:31:44 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/18 20:40:23 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/20 09:16:03 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,8 @@ void	pp_call_pipe(t_ml *tml)
 			// printf("\001\033[32m\002sprt\001\033[0m\002: |%s|\n", tml->split_cmd[i]);
 		}
 		check_empty_line(tml);
-		// if (builtin do pai)
-		if ((!ft_strcmp(tml->split_cmd[0], "exit") && !ft_cc(tml->cmd, '|'))
-			|| !ft_strcmp(tml->split_cmd[0], "cd")
-			|| (!ft_strcmp(tml->split_cmd[0], "export") && !tml->pp_cmd[1])
-			|| (!ft_strcmp(tml->split_cmd[0], "unset") && !tml->pp_cmd[1])
-			|| (ft_cc(tml->cmd, '=') && !tml->split_cmd[1] && !tml->pp_cmd[1])
-		)
-			tml_exec_father(tml);
-		else
+		if (tml_exec_father(tml) == -1)
 			fk_call_new_process(tml);
-		// -----
-		// if (builtin do filho ou commando)
 		tml_free_sprt_cmd(tml->split_cmd);
 	}
 	fk_wait_execs(tml);// rever localização

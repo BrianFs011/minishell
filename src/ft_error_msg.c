@@ -1,39 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bt_unset.c                                         :+:      :+:    :+:   */
+/*   ft_error_msg.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/15 07:37:39 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/21 17:58:30 by sde-cama         ###   ########.fr       */
+/*   Created: 2023/04/21 14:22:44 by sde-cama          #+#    #+#             */
+/*   Updated: 2023/04/21 14:32:46 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	bt_unset(t_varlist **start, t_string string)
+void	ft_print_error(char *arg, char *message, t_bool freeArg)
 {
-	t_varlist	*temp;
-	t_varlist	*before;
-	// t_string	a;
+	char	*error_msg;
 
-	// a = ft_strcpy("", TRUE);
-	// printf("%s", a);
-	// free(a);
-	if (!string)
-		return (0);
-	temp = (*start);
-	before = NULL;
-	while (temp)
-	{
-		if (!ft_strcmp(temp->name, string))
-		{
-			remove_no(start, &temp, &before);
-			// return (0);
-		}
-		before = temp;
-		temp = temp->next;
-	}
-	return (0);
+	if (arg != NULL)
+		error_msg = ft_strjoin("minishell: ", arg);
+	else
+		error_msg = ft_strdup("minishell: ");
+	error_msg = ft_strcat(error_msg, message, TRUE, FALSE);
+	ft_putendl_fd(error_msg, STDERR_FILENO);
+	if (freeArg)
+		free(arg);
+	free(error_msg);
 }

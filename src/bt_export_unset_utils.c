@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bt_export_unset_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 07:40:08 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 20:37:14 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/21 17:54:20 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	remove_no(t_varlist **start, t_varlist **temp, t_varlist **before)
 	}
 	else
 	{
-		free((*start)->name);
-		free((*start)->value);
-		free((*start));
-		(*start) = NULL;
+		(*start) = (*temp)->next;
+		free((*temp)->name);
+		free((*temp)->value);
+		free((*temp));
 	}
 }
 
@@ -46,7 +46,7 @@ int	export_from_local_vars(t_ml *tml)
 	{
 		if (!ft_strcmp(temp->name, tml->split_cmd[1]))
 		{
-			vr_insert(&(tml->env_vars), *temp);
+			vr_update_insert(&(tml->env_vars), *temp);
 			remove_no(&(tml->local_vars), &temp, &before);
 			break ;
 		}

@@ -21,7 +21,7 @@ SRCS		= ft_str.c fk_fork_utils.c tml_functions.c fl_file.c \
 				vr_vars.c tml_init.c ft_str2.c \
 				vr_descompress.c vr_descompress_utils.c \
 				vr_local_vars.c tml_functions_utils.c \
-				ft_utils.c tml_exit_status.c \
+				ft_utils.c tml_exit_status.c ft_error_msg.c\
 				tml_prompt.c $(BUILTINS) $(CHECKS)
 
 OBJS		= $(addprefix $(OBJ)/,$(SRCS:%.c=%.o))
@@ -40,7 +40,7 @@ $(OBJ)/%.o: $(SRC)/%.c
 	$(CC) -c $(FLAGS) $(HEADER) $< -o $@
 
 $(LIBFT):
-	make -C $(LIB)/libft bonus
+	make -C $(LIB)/libft
 
 $(FOLDERS):
 	mkdir $@
@@ -67,7 +67,7 @@ clean:
 fclean: clean
 	rm -rf $(BIN)
 	rm -rf $(LIB)/libminishell.a
-# make fclean -C $(LIB)/libft
+#make fclean -C $(LIB)/libft
 
 re: fclean all
 

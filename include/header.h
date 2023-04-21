@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 20:27:47 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/18 18:57:43 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/21 15:06:31 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ void		fk_wait_execs(t_ml *tml);
 /// @param path Path from file text
 /// @return t_string with text
 t_string	fl_get_text(t_string path);
+
+/// @brief Prints customized message to stderr
+/// @param arg Arg that generated the error
+/// @param message Customized message
+/// @param freeArg Inform if should free arg memory
+void	ft_print_error(char *arg, char *message, t_bool freeArg);
 
 /// @brief Search for $?
 /// @param start t_varlist to get value of $?
