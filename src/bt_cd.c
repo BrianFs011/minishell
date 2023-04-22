@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 12:00:21 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/22 10:37:04 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/22 11:36:53 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	bt_cd(t_ml *tml)
 
 	if (tml->split_cmd[2])
 	{
-		ft_print_error(tml->split_cmd[0], ft_strcat(": ", "too many arguments", FALSE, FALSE), FALSE);
+		ft_print_error(tml->split_cmd[0], ": too many arguments", FALSE);
 		return (1);
 	}
 	new_pwd.name = ft_strcpy("PWD", FALSE);
