@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 20:27:47 by briferre          #+#    #+#             */
 /*   Updated: 2023/04/21 15:06:31 by sde-cama         ###   ########.fr       */

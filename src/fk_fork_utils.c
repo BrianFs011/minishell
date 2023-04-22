@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   fk_fork_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:08:06 by briferre          #+#    #+#             */
 /*   Updated: 2023/04/21 17:58:14 by sde-cama         ###   ########.fr       */
@@ -11,6 +11,11 @@
 /* ************************************************************************** */
 
 #include "header.h"
+
+typedef struct s_teste
+{
+
+}t_teste;
 
 void	fk_call_new_process(t_ml *tml)
 {

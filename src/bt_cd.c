@@ -6,29 +6,22 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 12:00:21 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/20 17:10:17 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/22 10:37:04 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-static int	cd_error(t_string msg, int error_type)
-{
-	printf("%s", msg);
-	return (error_type);
-}
-
 static int	check_cd(t_ml *tml, t_varlist *new_pwd, t_varlist *old_pwd)
 {
-	// t_string	message;
+	t_string	message;
 
 	if (chdir(tml->pwd) != 0)
 	{
-		// message = ft_strcat("minishell: cd : ", tml->split_cmd[1], FALSE, FALSE);
-		ft_putendl_fd("minishell: cd: too many arguments",
-			STDERR_FILENO);
-		// perror(message);
-		// free(message);
+		message = ft_strcat("minishell: cd : ",
+				tml->split_cmd[1], FALSE, FALSE);
+		perror(message);
+		free(message);
 		free(old_pwd->name);
 		free(old_pwd->value);
 		return (1);
@@ -56,7 +49,10 @@ int	bt_cd(t_ml *tml)
 	int			exit_status;
 
 	if (tml->split_cmd[2])
-		return (cd_error("minishell: cd: too many arguments\n", 1));
+	{
+		ft_print_error(tml->split_cmd[0], ft_strcat(": ", "too many arguments", FALSE, FALSE), FALSE);
+		return (1);
+	}
 	new_pwd.name = ft_strcpy("PWD", FALSE);
 	old_pwd.name = ft_strcpy("OLDPWD", FALSE);
 	old_pwd.value = ft_strcpy(tml->pwd, FALSE);
@@ -69,7 +65,8 @@ int	bt_cd(t_ml *tml)
 			tml->pwd = ft_strrpc(tml->pwd, tml->split_cmd[1], TRUE, FALSE);
 		else
 			tml->pwd = ft_strcat(tml->pwd,
-					ft_strcat("/", tml->split_cmd[1], FALSE, FALSE), TRUE, TRUE);
+					ft_strcat("/", tml->split_cmd[1], FALSE, FALSE),
+					TRUE, TRUE);
 	}
 	exit_status = check_cd(tml, &new_pwd, &old_pwd);
 	free(new_pwd.name);

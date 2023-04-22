@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   terminal.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:49:53 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 21:14:38 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/22 12:35:40 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ t_string	get_var(t_ml *tml, t_string string, int *i);
 t_string	*tml_construct_env(t_ml *tml);
 
 int			tml_find_exec(t_ml *tml);
+
+int			tml_check_access(t_ml *tml);
 
 void		check_empty_line(t_ml *tml);
 
