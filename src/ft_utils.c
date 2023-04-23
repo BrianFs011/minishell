@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 08:21:41 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/18 19:35:07 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/22 20:14:48 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,20 @@ t_bool	ft_strisalpha(t_string str)
 	return (TRUE);
 }
 
+int	ft_isdigit_plus(int a)
+{
+	return (ft_isdigit(a) || a == '-' || a == '+');
+}
 
+int	ft_foreach(t_string string, int (f)(int))
+{
+	int		i;
+
+	i = -1;
+	while (string[++i])
+	{
+		if (!f(string[i]))
+			return (i);
+	}
+	return (-1);
+}

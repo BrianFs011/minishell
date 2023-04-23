@@ -11,8 +11,9 @@ INCLUDE		= ./include
 NAME			= $(BIN)/minishell
 
 #SRC FILES
+LIBFTE		= ft_atoi_llint.c
 BUILTINS	= bt_exit.c bt_cd.c bt_echo.c bt_pwd.c bt_env.c bt_unset.c bt_export.c bt_export_unset_utils.c
-CHECKS		= ck_cmd.c ck_compress.c ck_redirect.c
+CHECKS		= ck_cmd.c ck_compress.c ck_redirect.c ck_llong_int.c
 
 #VARIABLES
 SRCS		= ft_str.c fk_fork_utils.c tml_functions.c fl_file.c \
@@ -22,7 +23,7 @@ SRCS		= ft_str.c fk_fork_utils.c tml_functions.c fl_file.c \
 				vr_descompress.c vr_descompress_utils.c \
 				vr_local_vars.c tml_functions_utils.c \
 				ft_utils.c tml_exit_status.c ft_error_msg.c\
-				tml_prompt.c $(BUILTINS) $(CHECKS)
+				tml_prompt.c $(BUILTINS) $(CHECKS) $(LIBFTE)
 
 OBJS		= $(addprefix $(OBJ)/,$(SRCS:%.c=%.o))
 HEADER	= -I $(LIB)/libft/include -I $(INCLUDE)
