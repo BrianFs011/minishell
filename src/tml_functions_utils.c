@@ -6,7 +6,7 @@
 /*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:21:41 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/22 13:57:12 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/04/23 14:47:56 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,9 @@ int	tml_check_access(t_ml *tml)
 	if ((access(tml->split_cmd[0], X_OK)))
 	{
 		ft_print_error(ft_strcat(tml->split_cmd[0], ": ", FALSE, FALSE), strerror(errno), TRUE);
-		if (errno == 2)
+		if (errno == ENOENT)
 			check = 127;
-		if (errno == 13)
+		if (errno == EACCES)
 			check = 126;
 	}
 	return (check);
