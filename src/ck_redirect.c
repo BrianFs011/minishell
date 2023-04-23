@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ck_redirect.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 07:09:40 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 20:04:54 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/23 19:56:33 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ int	unexpected_token(t_string string)
 			|| string[i] == '|'
 			|| string[i] == '#'
 			|| string[i] == '&'
-			|| string[i] == '|'
 			|| string[i] == ')'
 			|| string[i] == '('
 		)
