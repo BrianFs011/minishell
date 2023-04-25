@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rd_redirection.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 18:09:52 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 20:37:14 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/25 20:14:25 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ int	rd_out(t_ml *tml, int *fd, int *i)
 		// printf("\033[35msprt_cmd\033[0m: %s|\n", tml->split_cmd[*i]);
 		oflag = O_CREAT | O_WRONLY | O_TRUNC;
 		if (!strcmp(tml->split_cmd[*i], ">"))
-			*fd = open (tml->split_cmd[++(*i)], oflag, 0644);
+			*fd = open (tml->split_cmd[++(*i)], oflag, 0644);//pq 0644? - não deveria ser 0664?
 		oflag = O_WRONLY | O_APPEND | O_CREAT;
 		if (!strcmp(tml->split_cmd[*i], ">>"))
 			*fd = open (tml->split_cmd[++(*i)], oflag, 0644);
 		if (*fd == -1)
-			return (tml_set_pexit_status("open", 1));
+			return (tml_set_pexit_status(tml->split_cmd[*i], 1));
 		if (dup2(*fd, STDOUT_FILENO) == -1)
 			return (tml_set_pexit_status("dup2", 1));
 	}

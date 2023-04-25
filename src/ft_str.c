@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_str.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 19:01:52 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/05 09:59:55 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/24 21:50:53 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,33 @@ t_string	ft_strcat(t_string src1, t_string src2, t_bool free1, t_bool free2)
 		ft_free(src1);
 	if (free2)
 		ft_free(src2);
+	return (new_dest);
+}
+
+t_string	ft_strcatc(t_string src1, char src2, t_bool free1)
+{
+	int			i;
+	int			j;
+	t_string	new_dest;
+
+	if (!src2)
+		return (src1);
+	if(src1)
+		i = ft_strlen(src1) + 2;
+	else
+		i = 2;
+	new_dest = malloc(sizeof(char) * i);
+	j = 0;
+	i = -1;
+	if(src1)
+	{
+		while (src1[j])
+			new_dest[++i] = src1[j++];
+	}
+	new_dest[++i] = src2;
+	new_dest[++i] = '\0';
+	if (free1)
+		ft_free(src1);
 	return (new_dest);
 }
 
