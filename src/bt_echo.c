@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 12:05:28 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/19 18:35:05 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/25 19:46:10 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	bt_echo(t_string *splt)
 			if (!ft_strcmp(splt[i], ">>") || !ft_strcmp(splt[i], ">")
 				|| !ft_strcmp(splt[i], "<") || !ft_strcmp(splt[i], "<<"))
 				break ;
-			if (splt[i] && splt[i + 1] == NULL)
+			if (splt[i] && (splt[i + 1] == NULL || !ft_isprint(splt[i + 1][0])))
 				printf("%s", splt[i]);
 			else
 				printf("%s ", splt[i]);
