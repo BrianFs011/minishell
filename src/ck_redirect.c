@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 07:09:40 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 20:04:54 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/24 19:51:27 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,14 @@ int	unexpected_token(t_string string)
 	// printf("%s\n", string);
 	while (string[++i])
 	{
+		if (ft_isalpha(string[i]) || string[i] == '.')
+			return (0);
 		if (
 			string[i] == '<'
 			|| string[i] == '>'
 			|| string[i] == '|'
 			|| string[i] == '#'
 			|| string[i] == '&'
-			|| string[i] == '|'
 			|| string[i] == ')'
 			|| string[i] == '('
 		)
@@ -179,3 +180,13 @@ int	ck_redictions(t_ml *tml)
 	// printf("\033[33mck_redirect\033[0m: %s\n", tml->cmd);
 	return (exit_status);
 }
+
+// while (tml->cmd[++i])
+// {
+// 	if ((tml->cmd[i] == '<' || tml->cmd[i] == '>') && tml->cmd[i - 1] != ' ' && !(tml->cmd[i - 1] == '<' || tml->cmd[i - 1] == '>'))
+// 		ft_strcat(new_cmd, ' ');
+// 	ft_strcatc(new_cmd, tml->cmd[i]);
+// 	if ((tml->cmd[i] == '<' || tml->cmd[i] == '>') && tml->cmd[i + 1] != ' ' && !(tml->cmd[i + 1] == '<' || tml->cmd[i + 1] == '>'))
+// 		ft_strcatc(new_cmd, ' ');
+// 	unexpected_token(ft_substr(tml->cmd, i, ft_strlen(tml->cmd) - i));
+// }

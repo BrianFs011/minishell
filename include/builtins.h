@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 09:08:22 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/21 15:04:22 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/24 20:04:19 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,7 @@ void		remove_no(t_varlist **start, t_varlist **temp, t_varlist **before);
 /// @param tml struct t_ml
 /// @return exit status
 int			export_from_local_vars(t_ml *tml);
+
+int			bt_print_export(t_varlist *start);
 
 #endif

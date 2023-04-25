@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:14:10 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/22 20:43:35 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/25 19:24:52 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,17 @@ int	tml_exec_father(t_ml *tml)
 	if (!ft_strcmp(tml->split_cmd[0], "cd"))
 		exit_status = bt_cd(tml);
 	if (!ft_strcmp(tml->split_cmd[0], "export") && !tml->pp_cmd[1])
-		exit_status = bt_export(tml);
+	{
+		if (tml->split_cmd[1] && ft_strcmp(tml->split_cmd[1], ">>")
+			&& ft_strcmp(tml->split_cmd[1], ">")
+			&& ft_strcmp(tml->split_cmd[1], "<")
+			&& ft_strcmp(tml->split_cmd[1], "<<"))
+			exit_status = bt_export(tml);
+	}
 	if (!ft_strcmp(tml->split_cmd[0], "unset") && !tml->pp_cmd[1])
 	{
 		exit_status = bt_unset(&tml->env_vars, tml->split_cmd[1]);
 		exit_status = bt_unset(&tml->local_vars, tml->split_cmd[1]);
-		// if (!tml->split_cmd[1])
-		// 	exit_status = 0;
-		// else
-		// {
-			// printf("%d\n", exit_status);
-			// vr_print(tml->env_vars);
-			// if (exit_status)
-			// 	exit_status = bt_unset(&tml->local_vars, tml->split_cmd[1]);
-			// printf("%d\n", exit_status);
-		// }
 	}
 	if (ft_cc(tml->cmd, '=') && !tml->split_cmd[1] && !tml->pp_cmd[1])
 		exit_status = vr_new_assignment(tml);
@@ -95,7 +91,8 @@ int	tml_exec_child(t_ml *tml, int *fd)
 		exit_status = tml_check_access(tml);
 	if (tml->pp_quant != 0 && exit_status == 0)
 		pp_switch(tml);
-
+	if (!ft_strcmp(tml->split_cmd[0], "export") && !tml->split_cmd[1])
+		exit_status = bt_print_export(tml->env_vars);
 	if (!ft_strcmp(tml->split_cmd[0], "pwd") && exit_status == 0)
 		exit_status = bt_pwd(tml);
 	if (!ft_strcmp(tml->split_cmd[0], "echo") && exit_status == 0)
