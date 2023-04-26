@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 08:50:23 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/22 20:20:06 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/26 18:48:52 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	bt_exit(t_ml *tml)
 			exit_status = exit_error(tml->split_cmd[0],
 					": numeric argument required", 2);
 	}
-	else
+	else if (tml->split_cmd[1] && tml->split_cmd[2])
 		exit_status = exit_error(tml->split_cmd[0], ": too many arguments", 1);
 	return (exit_status);
 }
