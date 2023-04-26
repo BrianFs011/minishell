@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 18:50:55 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/20 09:52:25 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/25 20:47:56 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,19 +102,5 @@ void	vr_print(t_varlist *start)
 	{
 		printf("%s=%s\n", start->name, start->value);
 		start = start->next;
-	}
-}
-
-void	vr_delete(t_varlist **start)
-{
-	t_varlist	*temp;
-
-	while ((*start))
-	{
-		temp = (*start);
-		(*start) = (*start)->next;
-		free(temp->name);
-		free(temp->value);
-		free(temp);
 	}
 }
