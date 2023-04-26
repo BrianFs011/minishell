@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vr_descompress.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:41:58 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/21 18:17:01 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/26 19:58:51 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static t_string	check_env_or_var(t_ml *tml, t_string new_string,
 	value = get_exit_status_var(tml->local_vars, string, i);
 	// printf("%c\n", string[(*i)]);
 	if (!ft_strcmp(value, ""))
-		value = get_env(tml->env_vars, string, i);
+		value = ft_strrpc(value, get_env(tml->env_vars, string, i), TRUE, TRUE);
 	// printf("%c\n", string[(*i)]);
 	if (!ft_strcmp(value, ""))
 		value = ft_strrpc(value,
