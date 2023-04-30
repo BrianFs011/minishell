@@ -6,7 +6,7 @@
 /*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 07:09:40 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/26 22:54:22 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/04/30 17:55:36 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	unexpected_token(char *token, int i)
 {
 	while (token[++i])
 	{
-		if (ft_isalnum(token[i]) || token[i] == '$')
+		if (ft_isalnum(token[i]) || token[i] == '.' || token[i] == '$')
 			return (0);
 		if (
 			token[i] == '<'

@@ -6,7 +6,7 @@
 /*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 08:50:23 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/23 14:58:01 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/04/30 17:50:44 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	bt_exit(t_ml *tml)
 			exit_status = exit_error(tml->split_cmd[0],
 					": numeric argument required", 2);
 	}
-	else
+	else if (tml->split_cmd[1] && tml->split_cmd[2])
 		exit_status = exit_error(tml->split_cmd[0], ": too many arguments", 1);
 	return (exit_status);
 }
