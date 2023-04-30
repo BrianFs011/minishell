@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pp_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:31:44 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/20 09:16:03 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/30 14:25:47 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,33 @@ void	pp_call_pipe(t_ml *tml)
 			fk_call_new_process(tml);
 		tml_free_sprt_cmd(tml->split_cmd);
 	}
-	fk_wait_execs(tml);// rever localização
 	if (tml->pp_quant > 0)
 		pp_delete_linked_pipes(tml);
+	fk_wait_execs(tml);
 }
 
 void	pp_switch(t_ml *tml)
 {
 	if (tml->i == tml->pp_quant)
-		dup2(tml->pp_lpipes[tml->i - 1][0], STDIN_FILENO);
+	{
+		fd_close(tml->pp_lpipes[tml->i - 1][1]);
+		if (fd_dup2(tml->pp_lpipes[tml->i - 1][0], STDIN_FILENO))
+			tml_set_pexit_status("dup2", EXIT_FAILURE);
+	}
 	else if (tml->i == 0)
-		dup2(tml->pp_lpipes[tml->i][1], STDOUT_FILENO);
+	{
+		fd_close(tml->pp_lpipes[tml->i][0]);
+		if (fd_dup2(tml->pp_lpipes[tml->i][1], STDOUT_FILENO))
+			tml_set_pexit_status("dup2", EXIT_FAILURE);
+	}
 	else
 	{
-		if (dup2(tml->pp_lpipes[tml->i - 1][0], STDIN_FILENO) == -1)
+		if (fd_dup2(tml->pp_lpipes[tml->i - 1][0], STDIN_FILENO))
 			tml_set_pexit_status("dup2", EXIT_FAILURE);
-		close(tml->pp_lpipes[tml->i][0]);
-		if (dup2(tml->pp_lpipes[tml->i][1], STDOUT_FILENO) == -1)
+		fd_close(tml->pp_lpipes[tml->i - 1][1]);
+		if (fd_dup2(tml->pp_lpipes[tml->i][1], STDOUT_FILENO))
 			tml_set_pexit_status("dup2", EXIT_FAILURE);
+		fd_close(tml->pp_lpipes[tml->i][0]);
 	}
 }
 
@@ -75,7 +84,11 @@ void	pp_delete_linked_pipes(t_ml *tml)
 
 	i = -1;
 	while (++i < tml->pp_quant)
+	{
+		fd_close(tml->pp_lpipes[i][1]);
+		fd_close(tml->pp_lpipes[i][0]);
 		free(tml->pp_lpipes[i]);
+	}
 	free(tml->pp_lpipes);
 	tml->pp_lpipes = NULL;
 }

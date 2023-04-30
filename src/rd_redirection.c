@@ -6,7 +6,7 @@
 /*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 18:09:52 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/25 20:14:25 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/04/30 14:27:32 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	rd_out(t_ml *tml, int *fd, int *i)
 {
-	int			oflag;
+	int	oflag;
 
 	if (!strcmp(tml->split_cmd[*i], ">") || !strcmp(tml->split_cmd[*i], ">>"))
 	{
@@ -27,7 +27,7 @@ int	rd_out(t_ml *tml, int *fd, int *i)
 			*fd = open (tml->split_cmd[++(*i)], oflag, 0644);
 		if (*fd == -1)
 			return (tml_set_pexit_status(tml->split_cmd[*i], 1));
-		if (dup2(*fd, STDOUT_FILENO) == -1)
+		if (fd_dup2(*fd, STDOUT_FILENO))
 			return (tml_set_pexit_status("dup2", 1));
 	}
 	return (0);
