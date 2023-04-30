@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:14:10 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/25 19:24:52 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/30 16:17:13 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ static t_bool	condition_for_exit(t_ml *tml)
 		|| !ft_strcmp(tml->split_cmd[0], "pwd")
 		|| !ft_strcmp(tml->split_cmd[0], "env")
 		|| ft_cc(tml->split_cmd[0], '=')
-		|| g_pid == -1
 	);
 }
 

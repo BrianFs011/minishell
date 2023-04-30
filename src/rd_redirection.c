@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 18:09:52 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 20:37:14 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/30 16:11:21 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,13 @@ int	rd_out(t_ml *tml, int *fd, int *i)
 }
 
 //desaloca a memória sem passar pelo fluxo de saida do programa
-void	free_tml(t_ml *tml, t_bool save, t_bool free)
+t_ml	*save_point(t_ml *tml, t_bool save)
 {
 	static t_ml	*tml_save;
 
 	if (save)
 		tml_save = tml;
-	if (free)
-	{
-		vr_delete(&tml_save->quotes_vars);
-		ft_free(tml_save->pwd);
-		ft_free(tml_save->prompt);
-		ft_free(tml_save->cmd);
-		tml_free_uhp(tml_save);
-		vr_delete(&tml_save->local_vars);
-		vr_delete(&tml_save->env_vars);
-		rl_clear_history();
-	}
+	return (tml_save);
 }
 
 void	rd_in_delimiter(t_ml *tml, int *i)
@@ -61,8 +51,8 @@ void	rd_in_delimiter(t_ml *tml, int *i)
 		tml_set_pexit_status("pipe", EXIT_FAILURE);
 	(*i)++;
 	tml->split_cmd[*i] = ft_strcat(tml->split_cmd[*i], "\n", TRUE, FALSE);
-	free_tml(tml, 1, 0);
-	while (ft_strcmp(tml->cmd, tml->split_cmd[*i]) && g_pid == G_CHILD)
+	save_point(tml, TRUE);
+	while (ft_strcmp(tml->cmd, tml->split_cmd[*i]))
 	{
 		free(tml->cmd);
 		tml->cmd = NULL;

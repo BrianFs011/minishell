@@ -51,7 +51,7 @@ run: all
 	$(NAME)
 
 test:
-	bash ./bin/minishell_tester/tester
+	gcc $(HEADER) main.c -o main $(LIBS); ./main; rm main
 
 check_gen: all
 	valgrind $(VAL_FLAGS) --log-file=valg/valgrind-suppressions-out.txt --gen-suppressions=yes $(NAME)

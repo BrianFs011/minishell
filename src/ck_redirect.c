@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 07:09:40 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/24 19:51:27 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/26 19:59:36 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	unexpected_token(t_string string)
 	// printf("%s\n", string);
 	while (string[++i])
 	{
-		if (ft_isalpha(string[i]) || string[i] == '.')
+		if (ft_isalpha(string[i]) || string[i] == '.' || string[i] == '$')
 			return (0);
 		if (
 			string[i] == '<'
