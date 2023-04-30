@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rd_redirection.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 18:09:52 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 20:37:14 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/30 17:51:34 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,33 @@
 
 int	rd_out(t_ml *tml, int *fd, int *i)
 {
-	int			oflag;
+	int	oflag;
 
 	if (!strcmp(tml->split_cmd[*i], ">") || !strcmp(tml->split_cmd[*i], ">>"))
 	{
 		// printf("\033[35msprt_cmd\033[0m: %s|\n", tml->split_cmd[*i]);
 		oflag = O_CREAT | O_WRONLY | O_TRUNC;
 		if (!strcmp(tml->split_cmd[*i], ">"))
-			*fd = open (tml->split_cmd[++(*i)], oflag, 0644);
+			*fd = open (tml->split_cmd[++(*i)], oflag, 0644);//pq 0644? - não deveria ser 0664?
 		oflag = O_WRONLY | O_APPEND | O_CREAT;
 		if (!strcmp(tml->split_cmd[*i], ">>"))
 			*fd = open (tml->split_cmd[++(*i)], oflag, 0644);
 		if (*fd == -1)
-			return (tml_set_pexit_status("open", 1));
-		if (dup2(*fd, STDOUT_FILENO) == -1)
+			return (tml_set_pexit_status(tml->split_cmd[*i], 1));
+		if (fd_dup2(*fd, STDOUT_FILENO))
 			return (tml_set_pexit_status("dup2", 1));
 	}
 	return (0);
 }
 
 //desaloca a memória sem passar pelo fluxo de saida do programa
-void	free_tml(t_ml *tml, t_bool save, t_bool free)
+t_ml	*save_point(t_ml *tml, t_bool save)
 {
 	static t_ml	*tml_save;
 
 	if (save)
 		tml_save = tml;
-	if (free)
-	{
-		vr_delete(&tml_save->quotes_vars);
-		ft_free(tml_save->pwd);
-		ft_free(tml_save->prompt);
-		ft_free(tml_save->cmd);
-		tml_free_uhp(tml_save);
-		vr_delete(&tml_save->local_vars);
-		vr_delete(&tml_save->env_vars);
-		rl_clear_history();
-	}
+	return (tml_save);
 }
 
 void	rd_in_delimiter(t_ml *tml, int *i)
@@ -61,8 +51,8 @@ void	rd_in_delimiter(t_ml *tml, int *i)
 		tml_set_pexit_status("pipe", EXIT_FAILURE);
 	(*i)++;
 	tml->split_cmd[*i] = ft_strcat(tml->split_cmd[*i], "\n", TRUE, FALSE);
-	free_tml(tml, 1, 0);
-	while (ft_strcmp(tml->cmd, tml->split_cmd[*i]) && g_pid == G_CHILD)
+	save_point(tml, TRUE);
+	while (ft_strcmp(tml->cmd, tml->split_cmd[*i]))
 	{
 		free(tml->cmd);
 		tml->cmd = NULL;

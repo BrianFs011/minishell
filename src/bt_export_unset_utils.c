@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bt_export_unset_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 07:40:08 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/21 17:54:20 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/04/24 20:52:56 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,22 @@ int	export_from_local_vars(t_ml *tml)
 		before = temp;
 		temp = temp->next;
 	}
+	return (0);
+}
+
+int	bt_print_export(t_varlist *start)
+{
+	int	oldpwd;
+
+	oldpwd = 0;
+	while (start && start->next)
+	{
+		printf("declare -x %s=\"%s\"\n", start->name, start->value);
+		if (!ft_strcmp(start->name, "OLDPWD"))
+			oldpwd++;
+		start = start->next;
+	}
+	if (!oldpwd)
+		printf("declare -x OLDPWD\n");
 	return (0);
 }

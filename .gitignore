@@ -4,5 +4,7 @@ bin
 lib/libft/obj
 lib/libft/bin
 out.txt
+notes.txt
 minishell_tester
 valg
+main.c

@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:59:03 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 20:49:03 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/22 19:38:48 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <sys/wait.h>
 # include <sys/resource.h>
 # include <errno.h>
+# include <limits.h>
 
 # include <readline/readline.h>
 # include <readline/history.h>

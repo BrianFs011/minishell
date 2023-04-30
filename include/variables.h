@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   variables.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 14:44:59 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/21 17:55:18 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/04/25 21:00:21 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,8 @@ t_string	vr_get_value(t_varlist *start, t_string name, t_bool empty);
 t_string	get_env(t_varlist *start, t_string string, int *i);
 
 t_bool		vr_change_value(t_varlist **start, t_varlist var);
+
+
+t_bool		vr_delete_node(t_varlist **start, t_varlist var);
 
 #endif

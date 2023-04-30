@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:53:50 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/18 20:54:32 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/30 13:16:08 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	tml_init(int argc, t_string *argv, t_string *env, t_ml *tml)
 	// using_history();
 	tml->exit_status = 0;
 	i = -1;
-	g_pid = 0;
 	tml->env_vars = NULL;
 	// tml->env = NULL;
 	tml->local_vars = NULL;

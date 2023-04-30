@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:45:34 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/20 09:08:38 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/25 21:14:17 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,6 @@ t_string	get_exit_status_var(t_varlist *start, t_string string, int *i)
 		(*i) = j;
 	}
 	else
-		value = ft_strcpy("", FALSE);
+		value = NULL;
 	return (value);
 }
