@@ -6,7 +6,7 @@
 /*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:21:41 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/23 14:47:56 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/04/30 23:41:37 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int	tml_find_exec(t_ml *tml)
 	i = -1;
 	check = 127;
 	paths = init_path(tml->env_vars);
+	if (*tml->split_cmd[0] == '\0')
+		exit(0);
 	while (paths[++i] && check != 0)
 	{
 		temp = ft_strcat(paths[i], ft_strcat("/", tml->split_cmd[0],
@@ -65,25 +67,35 @@ int	tml_find_exec(t_ml *tml)
 	}
 	tml_free_sprt_cmd(paths);
 	if (check)
-	{
-		// printf("minishell: %s: command not found\n", tml->split_cmd[0]);
 		ft_print_error(tml->split_cmd[0], ": command not found", FALSE);
-	}
 	return (check);
+}
+
+static int	is_folder(char *cmd)
+{
+	struct stat	statbuf;
+
+	if (stat(cmd, &statbuf) != 0)
+		return (0);
+	if (S_ISDIR(statbuf.st_mode))
+		return (TRUE);
+	return (FALSE);
 }
 
 int	tml_check_access(t_ml *tml)
 {
-	int	check;
-
-	check = 0;
+	if (is_folder(tml->split_cmd[0]))
+	{
+		ft_print_error(ft_strcat(tml->split_cmd[0], ": ", FALSE, FALSE), "Is a directory", TRUE);
+		return (126);
+	}
 	if ((access(tml->split_cmd[0], X_OK)))
 	{
 		ft_print_error(ft_strcat(tml->split_cmd[0], ": ", FALSE, FALSE), strerror(errno), TRUE);
 		if (errno == ENOENT)
-			check = 127;
+			return (127);
 		if (errno == EACCES)
-			check = 126;
+			return (126);
 	}
-	return (check);
+	return (0);
 }
