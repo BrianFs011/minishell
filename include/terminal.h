@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:49:53 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/30 15:25:26 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/01 10:34:39 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_ml
 	int					**pp_lpipes;
 	int					fd_pipe[2];
 	int					i;
+	int					redirect_out;
 	// t_sigaction			sigaction;
 	// t_string			temp;
 	// t_string			*env;
