@@ -6,7 +6,7 @@
 /*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:31:44 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/30 14:25:47 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/05/01 14:41:08 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,14 @@ void	pp_call_pipe(t_ml *tml)
 
 void	pp_switch(t_ml *tml)
 {
-	if (tml->i == tml->pp_quant)
+	if (tml->i == tml->pp_quant && tml->redirect_in != 1)
 	{
-		fd_close(tml->pp_lpipes[tml->i - 1][1]);
 		if (fd_dup2(tml->pp_lpipes[tml->i - 1][0], STDIN_FILENO))
 			tml_set_pexit_status("dup2", EXIT_FAILURE);
+		fd_close(tml->pp_lpipes[tml->i - 1][1]);
 	}
+	else if (tml->i == tml->pp_quant && tml->redirect_in == 1)
+		fd_close(tml->pp_lpipes[tml->i - 1][1]);
 	else if (tml->i == 0)
 	{
 		fd_close(tml->pp_lpipes[tml->i][0]);

@@ -6,7 +6,7 @@
 /*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 18:09:52 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/01 11:47:37 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/05/01 14:36:52 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	rd_in_delimiter(t_ml *tml, int *i)
 			write(fd_pipe[1], tml->cmd, ft_strlen(tml->cmd));
 	}
 	close(fd_pipe[1]);
-	if (dup2(fd_pipe[0], STDIN_FILENO) == -1)
+	if (fd_dup2(fd_pipe[0], STDIN_FILENO))
 		tml_set_pexit_status("dup2", EXIT_FAILURE);
 	close(fd_pipe[0]);
 }
@@ -75,13 +75,15 @@ int	rd_in(t_ml *tml, int *fd, int *i)
 		*fd = open(tml->split_cmd[++(*i)], O_RDONLY, 0644);
 		if (*fd == -1)
 			return (tml_set_pexit_status("missing", 1));
-		if (dup2(*fd, STDIN_FILENO) == -1)
+		if (fd_dup2(*fd, STDIN_FILENO))
 			return (tml_set_pexit_status("dup2", 1));
+		tml->redirect_in = 1;
 	}
 	if (!strcmp(tml->split_cmd[*i], "<<"))
 	{
 		rd_in_delimiter(tml, i);
 		*fd = -2;
+		tml->redirect_in = 1;
 	}
 	return (0);
 }
