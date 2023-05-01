@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:14:10 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/01 10:37:54 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/01 14:19:02 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,10 @@ int	tml_exec_child(t_ml *tml, int *fd)
 	t_string	*env_updated;
 
 	exit_status = 0;
+	tml->split_cmd_size = -1;
+	while (tml->split_cmd[++tml->split_cmd_size])
+		;
+	// printf("%d\n", tml->split_cmd_size);
 	exit_status = rd_redirection(tml, fd);
 	if (((!ft_strncmp(tml->split_cmd[0], "./", 2))
 			|| tml->split_cmd[0][0] == '/'))
@@ -96,7 +100,7 @@ int	tml_exec_child(t_ml *tml, int *fd)
 		exit_status = bt_pwd(tml);
 	if (!ft_strcmp(tml->split_cmd[0], "echo") && exit_status == 0)
 	{
-		exit_status = bt_echo(tml->split_cmd);
+		exit_status = bt_echo(tml);
 		// exit_status = tml->exit_status;
 	}
 	if (!ft_strcmp(tml->split_cmd[0], "env") && exit_status == 0)

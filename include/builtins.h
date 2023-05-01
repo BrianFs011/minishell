@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 09:08:22 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/24 20:04:19 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/01 14:17:07 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int			bt_cd(t_ml *tml);
 /// @brief Write on terminal
 /// @param splt t_string * with splt[0] = echo, splt[1]...[n] text
 /// @return exit status
-int			bt_echo(t_string *splt);
+int			bt_echo(t_ml *tml);
 
 /// @brief Find by environment PWD and print
 /// @param tml struct tml

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rd_redirection.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 18:09:52 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/01 14:36:52 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/05/01 14:20:04 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	rd_redirection(t_ml *tml, int *fd)
 		exit_status = rd_out(tml, fd, &i);
 		if (exit_status != 0)
 			return (exit_status);
-		if (*fd != -10)
+		if (*fd != -10 && ft_strcmp(tml->split_cmd[0], "echo"))
 		{
 			free(tml->split_cmd[--i]);
 			tml->split_cmd[i] = NULL;
