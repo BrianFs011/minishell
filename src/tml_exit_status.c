@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tml_exit_status.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 08:42:41 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/18 20:54:32 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/01 11:30:47 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ int	tml_set_exit_status(t_string msg, int exit)
 
 int	tml_set_pexit_status(char *message, int type)
 {
-	perror(message);
+	t_string	new_msg;
+
+	new_msg = ft_strcat("minishell: ", message, FALSE, FALSE);
+	perror(new_msg);
 	return (type);
 }
