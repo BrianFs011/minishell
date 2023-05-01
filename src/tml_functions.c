@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tml_functions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:14:10 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/01 10:18:46 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/05/01 10:37:54 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	tml_exec_child(t_ml *tml, int *fd)
 		exit_status = tml_check_access(tml);
 	if (condition_for_find_exec(tml) && exit_status == 0)
 		exit_status = tml_find_exec(tml);
-	if (tml->pp_quant != 0 && exit_status == 0)
+	if (tml->pp_quant != 0 && exit_status == 0 && tml->redirect_out != 1)
 		pp_switch(tml);
 	if (!ft_strcmp(tml->split_cmd[0], "export") && !tml->split_cmd[1])
 		exit_status = bt_print_export(tml->env_vars);

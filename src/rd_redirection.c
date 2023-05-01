@@ -6,7 +6,7 @@
 /*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 18:09:52 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/01 11:28:11 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/05/01 11:47:37 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	rd_out(t_ml *tml, int *fd, int *i)
 			return (tml_set_pexit_status(tml->split_cmd[*i], 1));
 		if (fd_dup2(*fd, STDOUT_FILENO))
 			return (tml_set_pexit_status("dup2", 1));
+		tml->redirect_out = 1;
 	}
 	return (0);
 }
