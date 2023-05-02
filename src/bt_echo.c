@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 12:05:28 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/01 14:23:15 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/02 10:58:37 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	bt_echo(t_ml *tml)
 	i = 0;
 	f = FALSE;
 	// ft_putstr_fd();
-	while (++i < tml->split_cmd_size)
+	while (tml->split_cmd[++i])
 	{
 		if (i == 1 && !ft_strcmp(tml->split_cmd[i], "-n"))
 			f = TRUE;
@@ -38,7 +38,7 @@ int	bt_echo(t_ml *tml)
 				else
 					printf("%s ", tml->split_cmd[i]);
 			}
-			// printf("\033[37m%s\033[0m ", splt[i]);
+			// printf("\033[37mecho\033[0m: %s\n", tml->split_cmd[i]);
 		}
 	}
 	if (!f)

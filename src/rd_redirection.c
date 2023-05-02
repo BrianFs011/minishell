@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 18:09:52 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/01 14:20:04 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/02 16:19:04 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	rd_out(t_ml *tml, int *fd, int *i)
 		oflag = O_WRONLY | O_APPEND | O_CREAT;
 		if (!strcmp(tml->split_cmd[*i], ">>"))
 			*fd = open (tml->split_cmd[++(*i)], oflag, 0644);
+
 		if (*fd == -1)
 			return (tml_set_pexit_status(tml->split_cmd[*i], 1));
 		if (fd_dup2(*fd, STDOUT_FILENO))
@@ -88,13 +89,62 @@ int	rd_in(t_ml *tml, int *fd, int *i)
 	return (0);
 }
 
-int	rd_redirection(t_ml *tml, int *fd)
+int	count_split(t_string *split)
 {
 	int	i;
-	int	exit_status;
 
 	i = -1;
+	while (split[++i])
+		;
+	return (i);
+}
+
+void	remove_redirection(t_ml *tml)
+{
+	int			i;
+	int			j;
+	int			split_size;
+	t_string	*split;
+
+	split_size = count_split(tml->split_cmd);
+	split = malloc(sizeof(t_string) * split_size + sizeof(t_string));
+	i = -1;
+	j = -1;
+	while (tml->split_cmd[++i])
+	{
+		if (!ft_strcmp(tml->split_cmd[i], ">>") || !ft_strcmp(tml->split_cmd[i], ">") || !ft_strcmp(tml->split_cmd[i], "<") || !ft_strcmp(tml->split_cmd[i], "<<"))
+		{
+			if (tml->split_cmd[i + 1])
+				i++;
+		}
+		else
+			split[++j] = ft_strcpy(tml->split_cmd[i], FALSE);
+	}
+	if (++j <= i)
+		split[j] = NULL;
+	tml_free_sprt_cmd(tml->split_cmd);
+	tml->split_cmd = malloc(sizeof(t_string) * j + sizeof(t_string));
+	i = -1;
+	while (split[++i])
+		tml->split_cmd[i] = ft_strcpy(split[i], FALSE);
+	tml->split_cmd[i] = NULL;
+	i = -1;
+	while (split[++i])
+		free(split[i]);
+	free(split);
+}
+
+int	rd_redirection(t_ml *tml, int *fd)
+{
+	int			i;
+	int			exit_status;
+
+	// i = -1;
+	// while (tml->split_cmd[++i])
+	// 	printf("\033[32m redirect\033[0m: %s\n", tml->split_cmd[i]);
+	// printf("\033[33m redirect\033[0m: %d\n", count_split(tml->split_cmd));
 	exit_status = 0;
+	i = -1;
 	while (tml->split_cmd[++i])
 	{
 		exit_status = rd_in(tml, fd, &i);
@@ -103,13 +153,21 @@ int	rd_redirection(t_ml *tml, int *fd)
 		exit_status = rd_out(tml, fd, &i);
 		if (exit_status != 0)
 			return (exit_status);
-		if (*fd != -10 && ft_strcmp(tml->split_cmd[0], "echo"))
-		{
-			free(tml->split_cmd[--i]);
-			tml->split_cmd[i] = NULL;
-			free(tml->split_cmd[++i]);
-			tml->split_cmd[i] = NULL;
-		}
 	}
+	// remover o redirecionamento
+	if (exit_status == 0 && (*fd) != -10)
+		remove_redirection(tml);
+	// i = -1;
+	// while (tml->split_cmd[++i])
+	// 	printf("\033[31m redirect\033[0m: %s\n", tml->split_cmd[i]);
 	return (exit_status);
 }
+
+// if (*fd != -10)
+// {
+// 	printf("\033[34m redirect\033[0m: %s\n", tml->split_cmd[i]);
+// 	// free(tml->split_cmd[--i]);
+// 	// tml->split_cmd[i] = NULL;
+// 	// free(tml->split_cmd[++i]);
+// 	// tml->split_cmd[i] = NULL;
+// }

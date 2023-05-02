@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tml_functions_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:21:41 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/30 23:41:37 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/05/02 11:14:30 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
