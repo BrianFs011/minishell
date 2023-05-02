@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vr_descompress.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:41:58 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/30 18:00:18 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/05/02 18:06:22 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,12 @@ static t_string	check_env_or_var(t_ml *tml, t_string new_string,
 
 	if (!new_string)
 		new_string = ft_substr(string, 0, (*i));
-	// printf("%c\n", string[(*i)]);
 	value = get_exit_status_var(tml->local_vars, string, i);
-	// printf("%c\n", string[(*i)]);
 	if (!value)
 		value = get_env(tml->env_vars, string, i);
-	// printf("%c\n", string[(*i)]);
 	if (!ft_strcmp(value, ""))
 		value = ft_strrpc(value,
 				get_env(tml->local_vars, string, i), TRUE, TRUE);
-	// printf("%c %s\n", string[(*i)], value);
 	if (!ft_strcmp(value, ""))
 		value = ft_strrpc(value, get_var(tml, string, i), TRUE, TRUE);
 	if (!ft_strcmp(value, "") && !ft_isdigit(string[(*i)]))
@@ -71,7 +67,6 @@ t_string	vr_descompress(t_ml *tml, t_string string)
 	j = -1;
 	new_string = NULL;
 	temp = malloc(sizeof(char) * ft_strlen(string) + 1);
-	// printf("\033[32m%s\033[0m\n", tml->split_cmd[i]);
 	while (string[++i])
 	{
 		if (new_string && string[i] != '$')
@@ -83,8 +78,6 @@ t_string	vr_descompress(t_ml *tml, t_string string)
 		}
 	}
 	new_string = complete_new_string(new_string, &temp, j);
-	if (new_string)
-	// printf("%s\n", new_string);
 	if (new_string)
 		string = ft_strrpc(string, new_string, TRUE, TRUE);
 	return (string);

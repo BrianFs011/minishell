@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_str.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 19:01:52 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/24 21:50:53 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/05/02 18:11:16 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,14 @@ t_string	ft_strcatc(t_string src1, char src2, t_bool free1)
 
 	if (!src2)
 		return (src1);
-	if(src1)
+	if (src1)
 		i = ft_strlen(src1) + 2;
 	else
 		i = 2;
 	new_dest = malloc(sizeof(char) * i);
 	j = 0;
 	i = -1;
-	if(src1)
+	if (src1)
 	{
 		while (src1[j])
 			new_dest[++i] = src1[j++];
@@ -99,17 +99,4 @@ int	ft_strcmp(t_string str1, t_string str2)
 		if (str1[i] - str2[i] != 0)
 			return (str1[i] - str2[i]);
 	return (0);
-}
-
-int	ft_cc(t_string text, char character)
-{
-	int	i;
-	int	cont;
-
-	i = -1;
-	cont = 0;
-	while (text[++i])
-		if (text[i] == character)
-			cont++;
-	return (cont);
 }

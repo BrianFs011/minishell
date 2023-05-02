@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 14:44:59 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/25 21:00:21 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/02 17:56:06 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ t_varlist	vr_get_name_value(t_string variables);
 /// @brief Insert in linked list
 /// @param start Adress struct t_varlist
 /// @param var t_varlist with content
-void	vr_insert(t_varlist **start, t_varlist var,	t_bool free_name, t_bool free_value);
+void		vr_insert(t_varlist **start, t_varlist var,
+				t_bool free_name, t_bool free_value);
 
 /// @brief Update value in linked list
 /// @param start Adress struct t_varlist
@@ -53,7 +54,6 @@ t_string	vr_get_value(t_varlist *start, t_string name, t_bool empty);
 t_string	get_env(t_varlist *start, t_string string, int *i);
 
 t_bool		vr_change_value(t_varlist **start, t_varlist var);
-
 
 t_bool		vr_delete_node(t_varlist **start, t_varlist var);
 

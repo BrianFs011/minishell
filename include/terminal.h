@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:49:53 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/02 10:59:17 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/02 17:55:49 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,18 @@
 
 typedef struct s_ml
 {
-	/* Display prompt */
 	t_string			user;
 	t_string			host;
 	t_string			pwd;
 	t_string			prompt;
 
-	/* User input */
 	t_string			cmd;
 	t_string			*pp_cmd;
 	t_string			*split_cmd;
 
-	/* Variables */
 	t_varlist			*local_vars;
 	t_varlist			*env_vars;
 	t_varlist			*quotes_vars;
-
 
 	t_varlist			*pid_list;
 
@@ -45,10 +41,6 @@ typedef struct s_ml
 	int					i;
 	int					redirect_out;
 	int					redirect_in;
-	// t_sigaction			sigaction;
-	// t_string			temp;
-	// t_string			*env;
-	// t_string			*paths;
 }t_ml;
 
 void		tml_init(int argc, t_string *argv, t_string *env, t_ml *tml);

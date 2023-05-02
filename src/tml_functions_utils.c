@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:21:41 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/02 11:14:30 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/02 19:01:12 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,61 +41,38 @@ static t_string	*init_path(t_varlist *start)
 	return (ft_split(temp->value, ':'));
 }
 
-int	tml_find_exec(t_ml *tml)
+static void	loop_check(t_ml *tml, t_string *paths, int *check)
 {
 	t_string	temp;
-	t_string	*paths;
 	int			i;
-	int			check;
 
 	i = -1;
-	check = 127;
-	paths = init_path(tml->env_vars);
-	if (*tml->split_cmd[0] == '\0')
-		exit(0);
-	while (paths[++i] && check != 0)
+	while (paths[++i] && (*check) != 0)
 	{
 		temp = ft_strcat(paths[i], ft_strcat("/", tml->split_cmd[0],
 					FALSE, FALSE), FALSE, TRUE);
 		if (access(temp, X_OK) == 0)
 		{
 			tml->split_cmd[0] = ft_strrpc(tml->split_cmd[0], temp, TRUE, TRUE);
-			check = 0;
+			(*check) = 0;
 		}
 		else
 			free(temp);
 	}
+}
+
+int	tml_find_exec(t_ml *tml)
+{
+	t_string	*paths;
+	int			check;
+
+	check = 127;
+	paths = init_path(tml->env_vars);
+	if (*tml->split_cmd[0] == '\0')
+		exit(0);
+	loop_check(tml, paths, &check);
 	tml_free_sprt_cmd(paths);
 	if (check)
 		ft_print_error(tml->split_cmd[0], ": command not found", FALSE);
 	return (check);
-}
-
-static int	is_folder(char *cmd)
-{
-	struct stat	statbuf;
-
-	if (stat(cmd, &statbuf) != 0)
-		return (0);
-	if (S_ISDIR(statbuf.st_mode))
-		return (TRUE);
-	return (FALSE);
-}
-
-int	tml_check_access(t_ml *tml)
-{
-	if (is_folder(tml->split_cmd[0]))
-	{
-		ft_print_error(ft_strcat(tml->split_cmd[0], ": ", FALSE, FALSE), "Is a directory", TRUE);
-		return (126);
-	}
-	if ((access(tml->split_cmd[0], X_OK)))
-	{
-		ft_print_error(ft_strcat(tml->split_cmd[0], ": ", FALSE, FALSE), strerror(errno), TRUE);
-		if (errno == ENOENT)
-			return (127);
-		if (errno == EACCES)
-			return (126);
-	}
-	return (0);
 }

@@ -6,26 +6,28 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 12:00:21 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/22 11:36:53 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/02 18:01:41 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-static int	check_cd(t_ml *tml, t_varlist *new_pwd, t_varlist *old_pwd)
+static int	no_pwd(t_ml *tml, t_varlist *old_pwd)
 {
 	t_string	message;
 
+	message = ft_strcat("minishell: cd : ", tml->split_cmd[1], FALSE, FALSE);
+	perror(message);
+	free(message);
+	free(old_pwd->name);
+	free(old_pwd->value);
+	return (1);
+}
+
+static int	check_cd(t_ml *tml, t_varlist *new_pwd, t_varlist *old_pwd)
+{
 	if (chdir(tml->pwd) != 0)
-	{
-		message = ft_strcat("minishell: cd : ",
-				tml->split_cmd[1], FALSE, FALSE);
-		perror(message);
-		free(message);
-		free(old_pwd->name);
-		free(old_pwd->value);
-		return (1);
-	}
+		return (no_pwd(tml, old_pwd));
 	else
 	{
 		getcwd(tml->pwd, ft_strlen(tml->pwd));
@@ -42,6 +44,12 @@ static int	check_cd(t_ml *tml, t_varlist *new_pwd, t_varlist *old_pwd)
 	return (0);
 }
 
+static int	cd_error(t_ml *tml, int error)
+{
+	ft_print_error(tml->split_cmd[0], ": too many arguments", FALSE);
+	return (error);
+}
+
 int	bt_cd(t_ml *tml)
 {
 	t_varlist	new_pwd;
@@ -49,10 +57,7 @@ int	bt_cd(t_ml *tml)
 	int			exit_status;
 
 	if (tml->split_cmd[2])
-	{
-		ft_print_error(tml->split_cmd[0], ": too many arguments", FALSE);
-		return (1);
-	}
+		return (cd_error(tml, 1));
 	new_pwd.name = ft_strcpy("PWD", FALSE);
 	old_pwd.name = ft_strcpy("OLDPWD", FALSE);
 	old_pwd.value = ft_strcpy(tml->pwd, FALSE);

@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 14:28:40 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/22 19:55:23 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/02 18:11:27 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,17 @@ int	*ft_strvchr(t_string string, char c)
 			vector[++j] = i;
 	vector[0] = ++j;
 	return (vector);
+}
+
+int	ft_cc(t_string text, char character)
+{
+	int	i;
+	int	cont;
+
+	i = -1;
+	cont = 0;
+	while (text[++i])
+		if (text[i] == character)
+			cont++;
+	return (cont);
 }

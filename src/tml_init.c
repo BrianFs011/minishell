@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:53:50 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/30 13:16:08 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/02 18:06:31 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,14 @@ void	tml_init(int argc, t_string *argv, t_string *env, t_ml *tml)
 
 	(void)argc;
 	(void)argv;
-	// rl_terminal_name = "xterm-256color";
-	// putenv("LINES=24");
-  // putenv("COLUMNS=80");
-	// using_history();
 	tml->exit_status = 0;
 	i = -1;
 	tml->env_vars = NULL;
-	// tml->env = NULL;
 	tml->local_vars = NULL;
 	tml->pid_list = NULL;
 	while (env[++i])
 		vr_update_insert(&tml->env_vars, vr_get_name_value(env[i]));
 	tml_exit_status(&tml->local_vars, 0, TRUE);
-	// tml->paths = init_path(tml->env_vars);
 	tml->running = RUNNIG;
 	tml->quotes_vars = NULL;
 	tml_get_uhp(tml);
