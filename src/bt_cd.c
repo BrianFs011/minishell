@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 12:00:21 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/03 14:15:04 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/03 14:47:42 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,20 @@ static int	cd_error(t_ml *tml, int error)
 	return (error);
 }
 
+static void	cd_only(t_ml *tml)
+{
+	t_string	temp;
+
+	temp = vr_get_value(tml->env_vars, "HOME", TRUE);
+	if (!ft_strcmp(temp, ""))
+	{
+		ft_print_error(tml->split_cmd[0], ": HOME not set", FALSE);
+		free (temp);
+	}
+	else
+		tml->pwd = ft_strrpc(tml->pwd, temp, TRUE, TRUE);
+}
+
 int	bt_cd(t_ml *tml)
 {
 	t_varlist	new_pwd;
@@ -62,8 +76,7 @@ int	bt_cd(t_ml *tml)
 	old_pwd.name = ft_strcpy("OLDPWD", FALSE);
 	old_pwd.value = ft_strcpy(tml->pwd, FALSE);
 	if (!tml->split_cmd[1])
-		tml->pwd = ft_strrpc(tml->pwd,
-				vr_get_value(tml->env_vars, "HOME", TRUE), TRUE, TRUE);
+		cd_only(tml);
 	else
 	{
 		if (tml->split_cmd[1][0] == '/')
