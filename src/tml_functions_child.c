@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:14:10 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/02 19:18:52 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/03 14:28:50 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	exec_builtins(t_ml *tml, int exit_status)
 	if (!ft_strcmp(tml->split_cmd[0], "echo") && exit_status == 0)
 		exit_status = bt_echo(tml);
 	if (!ft_strcmp(tml->split_cmd[0], "env") && exit_status == 0)
-		exit_status = bt_env(tml->env_vars);
+		exit_status = bt_env(tml);
 	return (exit_status);
 }
 
