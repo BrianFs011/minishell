@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bt_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 12:00:21 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/02 18:01:41 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/02 23:03:20 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	bt_cd(t_ml *tml)
 	t_varlist	old_pwd;
 	int			exit_status;
 
-	if (tml->split_cmd[2])
+	if (tml->split_cmd[1] && tml->split_cmd[2])
 		return (cd_error(tml, 1));
 	new_pwd.name = ft_strcpy("PWD", FALSE);
 	old_pwd.name = ft_strcpy("OLDPWD", FALSE);
