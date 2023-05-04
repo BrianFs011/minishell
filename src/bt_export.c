@@ -6,18 +6,11 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 07:39:31 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/26 19:13:15 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/04 17:59:36 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-
-/*
-	export -> imprime as variaveis de ambiente
-		comportamento no mini: não entra em bt_export
-	export hello -> transforma uma variavel local em uma variavel de ambiente
-	export hello=10 -> cria uma variavel de ambiente
-*/
 
 static t_bool	ck_var_name(t_string str)
 {

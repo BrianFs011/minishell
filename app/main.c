@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:57:24 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/04 09:25:30 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/04 17:57:30 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	tml_loop(t_ml *tml)
 	ft_free(tml->cmd);
 }
 
-// int	main(void)
 int	main(int argc, t_string *argv, t_string *env)
 {
 	t_ml			tml;

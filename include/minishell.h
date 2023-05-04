@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:59:03 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/30 21:06:13 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/05/04 18:05:07 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 
 # include <signal.h>
 
-# include <sys/stat.h> // stat - Get File Information
+# include <sys/stat.h>
 
 # include "libft.h"
 
@@ -50,8 +50,6 @@
 # define GREY "\001\033[22;39m\002"
 # define WHITE "\001\033[1;90m\002"
 # define RESET "\001\033[0m\002"
-
-// typedef struct s_
 
 typedef char				*t_string;
 typedef int					t_bool;

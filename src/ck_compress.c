@@ -6,30 +6,11 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 12:12:31 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/30 12:38:28 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/04 18:00:41 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-
-// static t_string	new_lines(char c)
-// {
-// 	t_string	line;
-// 	t_string	strings;
-
-// 	line = readline("> ");
-// 	line = ft_strcat(line, "\n", TRUE, FALSE);
-// 	strings = ft_strcpy(line, FALSE);
-// 	while (!ft_cc(line, c))
-// 	{
-// 		free(line);
-// 		line = readline("> ");
-// 		line = ft_strcat(line, "\n", TRUE, FALSE);
-// 		strings = ft_strcat(strings, line, TRUE, FALSE);
-// 	}
-// 	free(line);
-// 	return (strings);
-// }
 
 static t_varlist	construct_var(t_ml *tml, int i, int temp_i, char c)
 {
