@@ -6,11 +6,17 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:08:06 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/03 22:35:49 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/04 13:52:48 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+
+static void	handle_sigquit(int signal)
+{
+	(void)signal;
+	printf("Quit\n");
+}
 
 void	fk_call_new_process(t_ml *tml)
 {
@@ -25,6 +31,7 @@ void	fk_call_new_process(t_ml *tml)
 	else if (pid != 0)
 	{
 		g_pid = pid;
+		signal(SIGQUIT, handle_sigquit);
 		var.name = ft_strcpy("pid", FALSE);
 		var.value = ft_strcpy(ft_itoa(pid), TRUE);
 		vr_insert(&tml->pid_list, var, TRUE, TRUE);
@@ -38,7 +45,6 @@ void	fk_call_new_process(t_ml *tml)
 		g_pid = G_CHILD;
 		signal(SIGQUIT, SIG_DFL);
 		tml->exit_status = tml_exec_child(tml, &fd);
-		signal(SIGQUIT, SIG_IGN);
 	}
 }
 

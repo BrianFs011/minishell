@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:57:24 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/03 20:37:22 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/04 09:25:30 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,11 @@ int	main(int argc, t_string *argv, t_string *env)
 	t_ml			tml;
 
 	tml_init(argc, argv, env, &tml);
-	sa_hooks();
 	while (tml.running == RUNNIG)
+	{
+		sa_hooks();
 		tml_loop(&tml);
+	}
 	tml_free_uhp(&tml);
 	vr_delete(&tml.pid_list);
 	vr_delete(&tml.local_vars);
