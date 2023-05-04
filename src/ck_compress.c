@@ -3,33 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ck_compress.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 12:12:31 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/30 12:38:28 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/04 19:00:29 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-
-// static t_string	new_lines(char c)
-// {
-// 	t_string	line;
-// 	t_string	strings;
-
-// 	line = readline("> ");
-// 	line = ft_strcat(line, "\n", TRUE, FALSE);
-// 	strings = ft_strcpy(line, FALSE);
-// 	while (!ft_cc(line, c))
-// 	{
-// 		free(line);
-// 		line = readline("> ");
-// 		line = ft_strcat(line, "\n", TRUE, FALSE);
-// 		strings = ft_strcat(strings, line, TRUE, FALSE);
-// 	}
-// 	free(line);
-// 	return (strings);
-// }
 
 static t_varlist	construct_var(t_ml *tml, int i, int temp_i, char c)
 {
