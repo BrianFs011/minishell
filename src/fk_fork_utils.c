@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:08:06 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/03 20:40:34 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/03 22:35:49 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ void	fk_call_new_process(t_ml *tml)
 	else
 	{
 		g_pid = G_CHILD;
+		signal(SIGQUIT, SIG_DFL);
 		tml->exit_status = tml_exec_child(tml, &fd);
+		signal(SIGQUIT, SIG_IGN);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 18:09:52 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/02 18:50:12 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/04 08:00:51 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,28 +33,29 @@ static int	rd_out(t_ml *tml, int *fd, int *i)
 	return (0);
 }
 
-static void	rd_in_delimiter(t_ml *tml, int *i)
+static t_string	rd_in_delimiter(t_ml *tml, t_string hd_eof)
 {
-	int	fd_pipe[2];
+	t_string	temp;
+	t_string	temp2;
 
-	if (pipe(fd_pipe) == -1)
-		tml_set_pexit_status("pipe", EXIT_FAILURE);
-	(*i)++;
-	tml->split_cmd[*i] = ft_strcat(tml->split_cmd[*i], "\n", TRUE, FALSE);
+	temp2 = NULL;
+	temp = ft_strcpy(" ", FALSE);
 	save_point(tml, TRUE);
-	while (ft_strcmp(tml->cmd, tml->split_cmd[*i]))
+	while (ft_strcmp(temp, hd_eof))
 	{
-		free(tml->cmd);
-		tml->cmd = NULL;
-		tml->cmd = readline("> ");
-		tml->cmd = ft_strcat(tml->cmd, "\n", TRUE, FALSE);
-		if (ft_strcmp(tml->cmd, tml->split_cmd[*i]))
-			write(fd_pipe[1], tml->cmd, ft_strlen(tml->cmd));
+		free(temp);
+		temp = readline("> ");
+		if (ft_strcmp(temp, hd_eof))
+		{
+			temp = vr_descompress(tml, temp);
+			if (temp2)
+				temp2 = ft_strcat(temp2, temp, TRUE, FALSE);
+			else
+				temp2 = ft_strcpy(temp, FALSE);
+			temp2 = ft_strcat(temp2, "\n", TRUE, FALSE);
+		}
 	}
-	close(fd_pipe[1]);
-	if (fd_dup2(fd_pipe[0], STDIN_FILENO))
-		tml_set_pexit_status("dup2", EXIT_FAILURE);
-	close(fd_pipe[0]);
+	return (temp2);
 }
 
 static int	rd_in(t_ml *tml, int *fd, int *i)
@@ -68,32 +69,45 @@ static int	rd_in(t_ml *tml, int *fd, int *i)
 			return (tml_set_pexit_status("dup2", 1));
 		tml->redirect_in = 1;
 	}
-	if (!strcmp(tml->split_cmd[*i], "<<"))
+	return (0);
+}
+
+static void	rd_in_hd(t_ml *tml, int i, int *fd, t_string *here_doc)
+{
+	if (!strcmp(tml->split_cmd[i], "<<"))
 	{
-		rd_in_delimiter(tml, i);
+		if (*here_doc == NULL)
+			*here_doc = rd_in_delimiter(tml, tml->split_cmd[i + 1]);
+		else
+			*here_doc = ft_strrpc(*here_doc,
+					rd_in_delimiter(tml, tml->split_cmd[i + 1]), TRUE, TRUE);
 		*fd = -2;
 		tml->redirect_in = 1;
 	}
-	return (0);
 }
 
 int	rd_redirection(t_ml *tml, int *fd)
 {
 	int			i;
 	int			exit_status;
+	t_string	here_doc;
 
 	exit_status = 0;
 	i = -1;
+	here_doc = NULL;
 	while (tml->split_cmd[++i])
 	{
 		exit_status = rd_in(tml, fd, &i);
 		if (exit_status != 0)
 			return (exit_status);
+		rd_in_hd(tml, i, fd, &here_doc);
 		exit_status = rd_out(tml, fd, &i);
 		if (exit_status != 0)
 			return (exit_status);
 	}
-	if (exit_status == 0 && (*fd) != -10)
+	if (here_doc)
+		set_here_doc(here_doc);
+	if ((exit_status == 0 && (*fd) != -10) || here_doc)
 		remove_redirection(tml);
 	return (exit_status);
 }
