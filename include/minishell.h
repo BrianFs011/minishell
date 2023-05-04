@@ -6,7 +6,7 @@
 /*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:59:03 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/04 18:57:02 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/05/04 19:10:27 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@
 # define GREY "\001\033[22;39m\002"
 # define WHITE "\001\033[1;90m\002"
 # define RESET "\001\033[0m\002"
-
-// typedef struct s_
 
 typedef char				*t_string;
 typedef int					t_bool;
