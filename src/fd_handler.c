@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   fd_handler.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:42:40 by sde-cama          #+#    #+#             */
-/*   Updated: 2023/04/30 14:24:09 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/05/02 18:05:04 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void fd_close(int fd)
+void	fd_close(int fd)
 {
 	if (fd < 0)
-		return;
+		return ;
 	close(fd);
 }
 
-int fd_dup2(int oldfd, int newfd)
+int	fd_dup2(int oldfd, int newfd)
 {
 	if (dup2(oldfd, newfd) == -1)
 		return (1);

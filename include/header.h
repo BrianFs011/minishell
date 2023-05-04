@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 20:27:47 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/30 14:29:57 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/05/02 17:55:24 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_string	fl_get_text(t_string path);
 /// @param arg Arg that generated the error
 /// @param message Customized message
 /// @param freeArg Inform if should free arg memory
-void	ft_print_error(char *arg, char *message, t_bool freeArg);
+void		ft_print_error(char *arg, char *message, t_bool freeArg);
 
 /// @brief Search for $?
 /// @param start t_varlist to get value of $?
@@ -50,15 +50,15 @@ void	ft_print_error(char *arg, char *message, t_bool freeArg);
 /// @return Value $? or ""
 t_string	get_exit_status_var(t_varlist *start, t_string string, int *i);
 
-
-/// @brief Fd newfd is redirected to refer to the same fd as oldfd. Unused fds are closed.
+/// @brief Fd newfd is redirected to refer to the same fd as oldfd.
+/// Unused fds are closed.
 /// @param oldfd fd where to redirect
 /// @param newfd fd to be redirected
 /// @return Returns 1 if error and 0 if success
-int	fd_dup2(int oldfd, int newfd);
+int			fd_dup2(int oldfd, int newfd);
 
 /// @brief Close a file descriptor
 /// @param fd File to be closed
-void	fd_close(int fd);
+void		fd_close(int fd);
 
 #endif

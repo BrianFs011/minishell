@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 20:46:28 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/25 20:59:39 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/02 18:46:07 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ void	vr_delete(t_varlist **start)
 		free(temp->value);
 		free(temp);
 	}
+}
+
+static void	if_one(t_varlist **start)
+{
+	free((*start));
+	(*start) = NULL;
 }
 
 t_bool	vr_delete_node(t_varlist **start, t_varlist var)
@@ -44,10 +50,7 @@ t_bool	vr_delete_node(t_varlist **start, t_varlist var)
 		temp = temp->next;
 	}
 	if (!before)
-	{
-		free((*start));
-		(*start) = NULL;
-	}
+		if_one(start);
 	else if (finded)
 	{
 		temp = temp->next;

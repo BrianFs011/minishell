@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 15:33:53 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/30 16:16:39 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/04 13:39:39 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ static void	force_free(t_ml *tml)
 		pp_delete_linked_pipes(tml);
 	if (tml->cmd)
 		ft_free(tml->cmd);
+	tml_free_uhp(tml);
+	ft_free(tml->pwd);
+	ft_free(tml->prompt);
 	tml_free_sprt_cmd(tml->split_cmd);
 	tml_free_sprt_cmd(tml->pp_cmd);
 	vr_delete(&tml->quotes_vars);
-	ft_free(tml->pwd);
-	ft_free(tml->prompt);
-	tml_free_uhp(tml);
 	vr_delete(&tml->pid_list);
 	vr_delete(&tml->local_vars);
 	vr_delete(&tml->env_vars);
@@ -34,8 +34,8 @@ static void	handle_interrupt(int signal)
 {
 	t_ml	*tml;
 
-	(void)signal;
 	tml = NULL;
+	(void)signal;
 	if (g_pid == G_CHILD)
 	{
 		tml = save_point(tml, FALSE);
@@ -50,6 +50,8 @@ static void	handle_interrupt(int signal)
 		rl_replace_line("", 0);
 		rl_redisplay();
 	}
+	else
+		printf("\n");
 }
 
 void	sa_hooks(void)

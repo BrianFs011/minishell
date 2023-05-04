@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:59:03 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/22 19:38:48 by briferre         ###   ########.fr       */
+/*   Updated: 2023/04/30 21:06:13 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 # include <readline/history.h>
 
 # include <signal.h>
+
+# include <sys/stat.h> // stat - Get File Information
 
 # include "libft.h"
 

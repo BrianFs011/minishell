@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ck_redirect.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 07:09:40 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/30 17:55:36 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/05/02 19:08:52 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,24 @@ int	unexpected_token(char *token, int i)
 	return (0);
 }
 
+static int	before_condition(t_ml *tml, int i)
+{
+	return (
+		(tml->cmd[i] == '<' || tml->cmd[i] == '>')
+		&& tml->cmd[i - 1] != ' '
+		&& !(tml->cmd[i - 1] == '<' || tml->cmd[i - 1] == '>')
+	);
+}
+
+static int	after_condition(t_ml *tml, int i)
+{
+	return (
+		(tml->cmd[i] == '<' || tml->cmd[i] == '>')
+		&& tml->cmd[i + 1] != ' '
+		&& !(tml->cmd[i + 1] == '<' || tml->cmd[i + 1] == '>')
+	);
+}
+
 int	ck_redictions(t_ml *tml)
 {
 	t_string	new_cmd;
@@ -45,11 +63,10 @@ int	ck_redictions(t_ml *tml)
 	new_cmd = NULL;
 	while (tml->cmd[++i])
 	{
-		if ((tml->cmd[i] == '<' || tml->cmd[i] == '>') && tml->cmd[i - 1] != ' ' && !(tml->cmd[i - 1] == '<' || tml->cmd[i - 1] == '>'))
+		if (before_condition(tml, i))
 			new_cmd = ft_strcatc(new_cmd, ' ', TRUE);
-
 		new_cmd = ft_strcatc(new_cmd, tml->cmd[i], TRUE);
-		if ((tml->cmd[i] == '<' || tml->cmd[i] == '>') && tml->cmd[i + 1] != ' ' && !(tml->cmd[i + 1] == '<' || tml->cmd[i + 1] == '>'))
+		if (after_condition(tml, i))
 		{
 			new_cmd = ft_strcatc(new_cmd, ' ', TRUE);
 			if (unexpected_token(tml->cmd, i))

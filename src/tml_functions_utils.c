@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tml_functions_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:21:41 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/23 14:47:56 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/05/02 19:01:12 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,49 +41,38 @@ static t_string	*init_path(t_varlist *start)
 	return (ft_split(temp->value, ':'));
 }
 
-int	tml_find_exec(t_ml *tml)
+static void	loop_check(t_ml *tml, t_string *paths, int *check)
 {
 	t_string	temp;
-	t_string	*paths;
 	int			i;
-	int			check;
 
 	i = -1;
-	check = 127;
-	paths = init_path(tml->env_vars);
-	while (paths[++i] && check != 0)
+	while (paths[++i] && (*check) != 0)
 	{
 		temp = ft_strcat(paths[i], ft_strcat("/", tml->split_cmd[0],
 					FALSE, FALSE), FALSE, TRUE);
 		if (access(temp, X_OK) == 0)
 		{
 			tml->split_cmd[0] = ft_strrpc(tml->split_cmd[0], temp, TRUE, TRUE);
-			check = 0;
+			(*check) = 0;
 		}
 		else
 			free(temp);
 	}
-	tml_free_sprt_cmd(paths);
-	if (check)
-	{
-		// printf("minishell: %s: command not found\n", tml->split_cmd[0]);
-		ft_print_error(tml->split_cmd[0], ": command not found", FALSE);
-	}
-	return (check);
 }
 
-int	tml_check_access(t_ml *tml)
+int	tml_find_exec(t_ml *tml)
 {
-	int	check;
+	t_string	*paths;
+	int			check;
 
-	check = 0;
-	if ((access(tml->split_cmd[0], X_OK)))
-	{
-		ft_print_error(ft_strcat(tml->split_cmd[0], ": ", FALSE, FALSE), strerror(errno), TRUE);
-		if (errno == ENOENT)
-			check = 127;
-		if (errno == EACCES)
-			check = 126;
-	}
+	check = 127;
+	paths = init_path(tml->env_vars);
+	if (*tml->split_cmd[0] == '\0')
+		exit(0);
+	loop_check(tml, paths, &check);
+	tml_free_sprt_cmd(paths);
+	if (check)
+		ft_print_error(tml->split_cmd[0], ": command not found", FALSE);
 	return (check);
 }

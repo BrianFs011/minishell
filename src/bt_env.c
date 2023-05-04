@@ -6,14 +6,15 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 07:35:37 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/15 07:35:46 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/03 14:30:16 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	bt_env(t_varlist *start)
+int	bt_env(t_ml *tml)
 {
-	vr_print(start);
+	if (tml->split_cmd[1] == NULL)
+		vr_print(tml->env_vars);
 	return (0);
 }

@@ -3,37 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   bt_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 12:05:28 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/30 17:50:31 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/05/02 18:03:36 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	bt_echo(t_string *splt)
+int	bt_echo(t_ml *tml)
 {
 	int		i;
 	t_bool	f;
 
 	i = 0;
 	f = FALSE;
-	// ft_putstr_fd();
-	while (splt[++i])
+	while (tml->split_cmd[++i])
 	{
-		if (i == 1 && !ft_strcmp(splt[i], "-n"))
+		if (i == 1 && !ft_strcmp(tml->split_cmd[i], "-n"))
 			f = TRUE;
 		else
 		{
-			if (!ft_strcmp(splt[i], ">>") || !ft_strcmp(splt[i], ">")
-				|| !ft_strcmp(splt[i], "<") || !ft_strcmp(splt[i], "<<"))
-				break ;
-			if (splt[i] && (splt[i + 1] == NULL || !ft_isprint(splt[i + 1][0])))
-				printf("%s", splt[i]);
-			else
-				printf("%s ", splt[i]);
-			// printf("\033[37m%s\033[0m ", splt[i]);
+			if (tml->split_cmd[i])
+			{
+				if ((tml->split_cmd[i + 1] == NULL
+						|| !ft_isprint(tml->split_cmd[i + 1][0])))
+					printf("%s", tml->split_cmd[i]);
+				else
+					printf("%s ", tml->split_cmd[i]);
+			}
 		}
 	}
 	if (!f)

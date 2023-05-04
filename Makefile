@@ -11,20 +11,22 @@ INCLUDE		= ./include
 NAME			= $(BIN)/minishell
 
 #SRC FILES
-VARIABLES = vr_linked_list.c vr_linked_list_delete.c
-LIBFTE		= ft_atoi_llint.c
-BUILTINS	= bt_exit.c bt_cd.c bt_echo.c bt_pwd.c bt_env.c bt_unset.c bt_export.c bt_export_unset_utils.c
-CHECKS		= ck_cmd.c ck_compress.c ck_redirect.c ck_llong_int.c
+VARIABLES 	= vr_linked_list.c vr_linked_list_delete.c
+LIBFTE			= ft_atoi_llint.c
+BUILTINS		= bt_exit.c bt_cd.c bt_echo.c bt_pwd.c bt_env.c bt_unset.c bt_export.c bt_export_unset_utils.c
+CHECKS			= ck_cmd.c ck_compress.c ck_redirect.c ck_llong_int.c
+REDIRECTION	= rd_redirection.c rd_redirection_utils.c
+TERMINAL		= tml_functions_child.c tml_functions_father.c tml_functions_utils.c tml_functions_utils2.c tml_scroll_pipes.c
 
 #VARIABLES
-SRCS		= ft_str.c fk_fork_utils.c tml_functions.c fl_file.c \
-			  ft_clear_memory.c tml_clear_memory.c rd_redirection.c \
+SRCS		= ft_str.c fk_fork_utils.c  fl_file.c \
+			  ft_clear_memory.c tml_clear_memory.c \
 			  pp_pipe.c sa_sigaction.c sa_hooks.c \
 				vr_vars.c tml_init.c ft_str2.c \
 				vr_descompress.c vr_descompress_utils.c \
-				vr_local_vars.c tml_functions_utils.c \
+				vr_local_vars.c  \
 				ft_utils.c tml_exit_status.c ft_error_msg.c fd_handler.c\
-				tml_prompt.c $(BUILTINS) $(CHECKS) $(LIBFTE) $(VARIABLES)
+				tml_prompt.c $(BUILTINS) $(CHECKS) $(LIBFTE) $(VARIABLES) $(REDIRECTION) $(TERMINAL)
 
 OBJS		= $(addprefix $(OBJ)/,$(SRCS:%.c=%.o))
 HEADER	= -I $(LIB)/libft/include -I $(INCLUDE)

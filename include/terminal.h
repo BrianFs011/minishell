@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:49:53 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/30 15:25:26 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/03 20:37:22 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,18 @@
 
 typedef struct s_ml
 {
-	/* Display prompt */
 	t_string			user;
 	t_string			host;
 	t_string			pwd;
 	t_string			prompt;
 
-	/* User input */
 	t_string			cmd;
 	t_string			*pp_cmd;
 	t_string			*split_cmd;
 
-	/* Variables */
 	t_varlist			*local_vars;
 	t_varlist			*env_vars;
 	t_varlist			*quotes_vars;
-
 
 	t_varlist			*pid_list;
 
@@ -43,10 +39,8 @@ typedef struct s_ml
 	int					**pp_lpipes;
 	int					fd_pipe[2];
 	int					i;
-	// t_sigaction			sigaction;
-	// t_string			temp;
-	// t_string			*env;
-	// t_string			*paths;
+	int					redirect_out;
+	int					redirect_in;
 }t_ml;
 
 void		tml_init(int argc, t_string *argv, t_string *env, t_ml *tml);
@@ -63,7 +57,7 @@ void		tml_get_uhp(t_ml *tml);
 
 /// @brief Create line who is show in terminal
 /// @param tml Struct t_ml
-void		tml_create_uhp_line(t_ml *tml);
+void		tml_create_prompt(t_ml *tml);
 
 /// @brief Free user, host and path from t_ml
 /// @param tml	Struct t_ml
