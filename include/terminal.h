@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:49:53 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/02 17:55:49 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/03 20:37:22 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void		tml_get_uhp(t_ml *tml);
 
 /// @brief Create line who is show in terminal
 /// @param tml Struct t_ml
-void		tml_create_uhp_line(t_ml *tml);
+void		tml_create_prompt(t_ml *tml);
 
 /// @brief Free user, host and path from t_ml
 /// @param tml	Struct t_ml

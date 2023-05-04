@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 16:10:39 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/05 14:39:28 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/03 20:28:16 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void		pp_switch(t_ml *tml);
 
 /// @brief Called when have one or more pipes
 /// @param tml struct t_ml
-void		pp_call_pipe(t_ml *tml);
+void		tml_scroll_pipe_list(t_ml *tml);
 
 void		pp_error(t_ml *tml, int *error);
 

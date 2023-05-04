@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:08:06 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/02 18:12:39 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/03 20:40:34 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	fk_wait_execs(t_ml *tml)
 	t_varlist	*temp;
 
 	temp = tml->pid_list;
+	new_exit_code = 0;
 	while (temp)
 	{
 		if (!ft_strcmp(temp->name, "pid"))

@@ -6,13 +6,13 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:58:48 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/17 20:12:01 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/03 20:37:26 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	tml_create_uhp_line(t_ml *tml)
+void	tml_create_prompt(t_ml *tml)
 {
 	tml->pwd = vr_get_value(tml->env_vars, "PWD", TRUE);
 	tml->prompt = ft_strcpy(PINK, FALSE);

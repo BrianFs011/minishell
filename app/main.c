@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:57:24 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/02 17:54:36 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/03 20:37:22 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	tml_call(t_ml *tml)
 	{
 		tml->pp_quant = ft_cc(tml->cmd, '|');
 		tml->pp_cmd = ft_split(tml->cmd, '|');
-		pp_call_pipe(tml);
+		tml_scroll_pipe_list(tml);
 		tml_free_sprt_cmd(tml->pp_cmd);
 	}
 }
@@ -28,7 +28,7 @@ void	tml_call(t_ml *tml)
 void	tml_loop(t_ml *tml)
 {
 	g_pid = G_FATHER;
-	tml_create_uhp_line(tml);
+	tml_create_prompt(tml);
 	tml->cmd = readline(tml->prompt);
 	if (tml->cmd)
 	{

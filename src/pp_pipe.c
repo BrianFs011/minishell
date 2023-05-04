@@ -6,39 +6,11 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:31:44 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/03 13:57:28 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/03 20:25:25 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-
-void	pp_call_pipe(t_ml *tml)
-{
-	int	i;
-
-	if (tml->pp_quant > 0)
-		pp_linked_pipes(tml);
-	tml->i = -1;
-	while (++tml->i <= tml->pp_quant && tml->running == RUNNIG)
-	{
-		if (tml->pp_cmd[tml->i])
-		{
-			tml->split_cmd = ft_split(tml->pp_cmd[tml->i], ' ');
-			i = -1;
-			while (tml->split_cmd[++i])
-				tml->split_cmd[i] = vr_descompress(tml, tml->split_cmd[i]);
-			check_empty_line(tml);
-			if (tml_exec_father(tml) == -1)
-				fk_call_new_process(tml);
-			tml_free_sprt_cmd(tml->split_cmd);
-		}
-		else
-			ft_print_error(NULL, "Syntax error", FALSE);
-	}
-	if (tml->pp_quant > 0)
-		pp_delete_linked_pipes(tml);
-	fk_wait_execs(tml);
-}
 
 void	pp_switch(t_ml *tml)
 {
