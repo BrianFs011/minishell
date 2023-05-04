@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rd_redirection.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 18:09:52 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/04 08:00:51 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/04 13:32:58 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,12 @@ static int	rd_in(t_ml *tml, int *fd, int *i)
 	{
 		*fd = open(tml->split_cmd[++(*i)], O_RDONLY, 0644);
 		if (*fd == -1)
-			return (tml_set_pexit_status("missing", 1));
+		{
+			if (tml->split_cmd[(*i)])
+				return (tml_set_pexit_status(tml->split_cmd[(*i)], 1));
+			else
+				return (tml_set_pexit_status("missing", 1));
+		}
 		if (fd_dup2(*fd, STDIN_FILENO))
 			return (tml_set_pexit_status("dup2", 1));
 		tml->redirect_in = 1;
