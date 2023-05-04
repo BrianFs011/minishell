@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   terminal.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:49:53 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/03 20:37:22 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/04 18:50:43 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,5 @@ int			tml_set_exit_status(t_string msg, int exit);
 int			tml_set_pexit_status(t_string message, int type);
 
 t_ml		*save_point(t_ml *tml, t_bool save);
-// int	save_point(int tml, t_bool save);
 
 #endif

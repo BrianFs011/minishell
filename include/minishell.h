@@ -6,7 +6,7 @@
 /*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:59:03 by briferre          #+#    #+#             */
-/*   Updated: 2023/04/30 21:06:13 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/05/04 18:57:02 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 
 # include <signal.h>
 
-# include <sys/stat.h> // stat - Get File Information
+# include <sys/stat.h>
 
 # include "libft.h"
 
