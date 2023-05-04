@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 15:33:53 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/03 06:57:43 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/04 13:39:39 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ static void	handle_interrupt(int signal)
 {
 	t_ml	*tml;
 
-	(void)signal;
 	tml = NULL;
+	(void)signal;
 	if (g_pid == G_CHILD)
 	{
 		tml = save_point(tml, FALSE);
@@ -50,6 +50,8 @@ static void	handle_interrupt(int signal)
 		rl_replace_line("", 0);
 		rl_redisplay();
 	}
+	else
+		printf("\n");
 }
 
 void	sa_hooks(void)
