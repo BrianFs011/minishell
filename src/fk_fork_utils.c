@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:08:06 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/04 13:52:48 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/04 16:02:39 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@ static void	handle_sigquit(int signal)
 {
 	(void)signal;
 	printf("Quit\n");
+}
+
+static void	close_fd_pp(t_ml *tml, int *fd)
+{
+	if (*fd != -10)
+		close(*fd);
+	if (tml->pp_quant != 0 && !(tml->i == tml->pp_quant))
+		close(tml->pp_lpipes[tml->i][1]);
 }
 
 void	fk_call_new_process(t_ml *tml)
@@ -35,10 +43,7 @@ void	fk_call_new_process(t_ml *tml)
 		var.name = ft_strcpy("pid", FALSE);
 		var.value = ft_strcpy(ft_itoa(pid), TRUE);
 		vr_insert(&tml->pid_list, var, TRUE, TRUE);
-		if (fd != -10)
-			close(fd);
-		if (tml->pp_quant != 0 && !(tml->i == tml->pp_quant))
-			close(tml->pp_lpipes[tml->i][1]);
+		close_fd_pp(tml, &fd);
 	}
 	else
 	{
