@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 20:26:30 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/05 18:07:19 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/05 18:14:03 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ static void	have_command(t_ml *tml)
 	{
 		if (tml_exec_father(tml) == -1)
 			fk_call_new_process(tml);
-		tml_free_sprt_cmd(tml->split_cmd);
 	}
+	tml_free_sprt_cmd(tml->split_cmd);
 }
 
 static int	do_not_have_command(t_ml *tml)
