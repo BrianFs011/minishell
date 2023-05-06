@@ -6,7 +6,7 @@
 /*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:49:53 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/04 19:10:21 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/05/06 13:42:23 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct s_ml
 	int					i;
 	int					redirect_out;
 	int					redirect_in;
+	int					stdin;
+	int					stdout;
 }t_ml;
 
 void		tml_init(int argc, t_string *argv, t_string *env, t_ml *tml);

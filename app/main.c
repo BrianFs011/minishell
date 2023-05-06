@@ -6,7 +6,7 @@
 /*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:57:24 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/04 19:10:40 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/05/06 13:38:12 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ void	tml_call(t_ml *tml)
 void	tml_loop(t_ml *tml)
 {
 	g_pid = G_FATHER;
+	if (tml->cmd)
+	{
+		tml->cmd = NULL;
+		fd_dup2(tml->stdin, STDIN_FILENO);
+	}
 	tml_create_prompt(tml);
 	tml->cmd = readline(tml->prompt);
 	if (tml->cmd)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 20:27:47 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/02 17:55:24 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/06 13:41:24 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,7 @@ int			fd_dup2(int oldfd, int newfd);
 /// @brief Close a file descriptor
 /// @param fd File to be closed
 void		fd_close(int fd);
+
+void	ft_dup_stdin_out(t_ml *tml);
 
 #endif

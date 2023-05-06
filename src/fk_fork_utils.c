@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fk_fork_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:08:06 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/04 16:02:39 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/06 13:37:48 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,24 @@ static void	handle_sigquit(int signal)
 	printf("Quit\n");
 }
 
-static void	close_fd_pp(t_ml *tml, int *fd)
-{
-	if (*fd != -10)
-		close(*fd);
-	if (tml->pp_quant != 0 && !(tml->i == tml->pp_quant))
-		close(tml->pp_lpipes[tml->i][1]);
-}
+// static void	close_fd_pp(t_ml *tml, int *fd)
+// {
+// 	if (*fd != -10)
+// 		close(*fd);
+// 	if (tml->pp_quant != 0 && !(tml->i == tml->pp_quant))
+// 		close(tml->pp_lpipes[tml->i][1]);
+// }
 
 void	fk_call_new_process(t_ml *tml)
 {
 	int			fd;
 	pid_t		pid;
 	t_varlist	var;
+	int			p_fd[2];
 
 	fd = -10;
+	if (pipe(p_fd) == -1)
+		perror("Pipe fail. Could not pipe files.");
 	pid = fork();
 	if (pid == -1)
 		perror("Erro ao criar o processo filho\n");
@@ -43,10 +46,18 @@ void	fk_call_new_process(t_ml *tml)
 		var.name = ft_strcpy("pid", FALSE);
 		var.value = ft_strcpy(ft_itoa(pid), TRUE);
 		vr_insert(&tml->pid_list, var, TRUE, TRUE);
-		close_fd_pp(tml, &fd);
+		// close_fd_pp(tml, &fd);
+		if (fd != -10)
+			close(fd);
+		close(p_fd[1]);
+		if (tml->pp_quant != 0)
+			fd_dup2(p_fd[0], STDIN_FILENO);
 	}
 	else
 	{
+		if (tml->pp_quant != 0 && tml->i != tml->pp_quant)
+			fd_dup2(p_fd[1], STDOUT_FILENO);
+		close(p_fd[0]);
 		g_pid = G_CHILD;
 		signal(SIGQUIT, SIG_DFL);
 		tml->exit_status = tml_exec_child(tml, &fd);
