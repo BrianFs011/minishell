@@ -6,7 +6,7 @@
 /*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:08:06 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/06 13:37:48 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/05/06 17:33:52 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,20 @@ void	fk_call_new_process(t_ml *tml)
 		vr_insert(&tml->pid_list, var, TRUE, TRUE);
 		// close_fd_pp(tml, &fd);
 		if (fd != -10)
-			close(fd);
-		close(p_fd[1]);
-		if (tml->pp_quant != 0)
+			fd_close(fd);
+		fd_close(p_fd[1]);
+		if (tml->pp_quant != 0 && tml->redirect_in != 1)
 			fd_dup2(p_fd[0], STDIN_FILENO);
+		else
+			fd_close(p_fd[0]);
 	}
 	else
 	{
-		if (tml->pp_quant != 0 && tml->i != tml->pp_quant)
-			fd_dup2(p_fd[1], STDOUT_FILENO);
 		close(p_fd[0]);
+		if (tml->pp_quant != 0 && tml->i != tml->pp_quant  && tml->redirect_out != 1)
+			fd_dup2(p_fd[1], STDOUT_FILENO);
+		else if (tml->pp_quant != 0 && tml->i == tml->pp_quant)
+			fd_close(p_fd[1]);
 		g_pid = G_CHILD;
 		signal(SIGQUIT, SIG_DFL);
 		tml->exit_status = tml_exec_child(tml, &fd);
