@@ -6,7 +6,7 @@
 /*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:57:24 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/06 17:18:32 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/05/06 23:05:09 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@ void	tml_loop(t_ml *tml)
 	if (tml->cmd)
 	{
 		tml->cmd = NULL;
-		fd_dup2(tml->stdin, STDIN_FILENO);
-		fd_dup2(tml->stdout, STDOUT_FILENO);
+		if (fd_dup2(tml->stdin, STDIN_FILENO) || fd_dup2(tml->stdout, STDOUT_FILENO))
+			tml_set_pexit_status("dup2", EXIT_FAILURE);
+		ft_dup_stdin_out(tml);
 	}
 	tml_create_prompt(tml);
 	tml->cmd = readline(tml->prompt);
