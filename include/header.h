@@ -6,7 +6,7 @@
 /*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 20:27:47 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/06 23:26:03 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/05/07 18:45:31 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,6 @@ void		fd_close(int fd);
 
 /// @brief Saves stdin and stdout file descriptor
 /// @param tml Struct t_ml
-void	ft_dup_stdin_out(t_ml *tml);
+void		ft_dup_stdin_out(t_ml *tml);
 
 #endif

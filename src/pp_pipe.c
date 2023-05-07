@@ -17,7 +17,8 @@ void	pp_switch(t_ml *tml, int *fd)
 	if (g_pid == G_CHILD)
 	{
 		close(tml->fd_pipe[0]);
-		if (tml->pp_quant != 0 && tml->i != tml->pp_quant  && tml->redirect_out != 1)
+		if (tml->pp_quant != 0
+			&& tml->i != tml->pp_quant && tml->redirect_out != 1)
 			fd_dup2(tml->fd_pipe[1], STDOUT_FILENO);
 		else if (tml->pp_quant != 0 && tml->i == tml->pp_quant)
 			fd_close(tml->fd_pipe[1]);
