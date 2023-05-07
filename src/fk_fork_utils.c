@@ -6,7 +6,7 @@
 /*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:08:06 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/06 23:13:09 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/05/07 13:15:47 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,22 @@ static void	handle_sigquit(int signal)
 	printf("Quit\n");
 }
 
+static void	fk_save_pid(t_ml *tml, int pid)
+{
+	t_varlist	var;
+
+	var.name = ft_strcpy("pid", FALSE);
+	var.value = ft_strcpy(ft_itoa(pid), TRUE);
+	vr_insert(&tml->pid_list, var, TRUE, TRUE);
+}
+
 void	fk_call_new_process(t_ml *tml)
 {
 	int			fd;
 	pid_t		pid;
-	t_varlist	var;
-	int			p_fd[2];
 
 	fd = -10;
-	if (pipe(p_fd) == -1)
+	if (pipe(tml->fd_pipe) == -1)
 		perror("Pipe fail. Could not pipe files.");
 	pid = fork();
 	if (pid == -1)
@@ -34,26 +41,14 @@ void	fk_call_new_process(t_ml *tml)
 	else if (pid != 0)
 	{
 		g_pid = pid;
+		pp_switch(tml, &fd);
 		signal(SIGQUIT, handle_sigquit);
-		var.name = ft_strcpy("pid", FALSE);
-		var.value = ft_strcpy(ft_itoa(pid), TRUE);
-		vr_insert(&tml->pid_list, var, TRUE, TRUE);
-		if (fd != -10)
-			fd_close(fd);
-		fd_close(p_fd[1]);
-		if (tml->pp_quant != 0 && tml->redirect_in != 1)
-			fd_dup2(p_fd[0], STDIN_FILENO);
-		else
-			fd_close(p_fd[0]);
+		fk_save_pid(tml, pid);
 	}
 	else
 	{
-		close(p_fd[0]);
-		if (tml->pp_quant != 0 && tml->i != tml->pp_quant  && tml->redirect_out != 1)
-			fd_dup2(p_fd[1], STDOUT_FILENO);
-		else if (tml->pp_quant != 0 && tml->i == tml->pp_quant)
-			fd_close(p_fd[1]);
 		g_pid = G_CHILD;
+		pp_switch(tml, &fd);
 		signal(SIGQUIT, SIG_DFL);
 		tml->exit_status = tml_exec_child(tml, &fd);
 	}

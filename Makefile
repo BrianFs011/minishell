@@ -21,7 +21,7 @@ TERMINAL		= tml_functions_child.c tml_functions_father.c tml_functions_utils.c t
 #VARIABLES
 SRCS		= ft_str.c fk_fork_utils.c  fl_file.c \
 			  ft_clear_memory.c tml_clear_memory.c \
-			  sa_sigaction.c sa_hooks.c \
+			  pp_pipe.c sa_sigaction.c sa_hooks.c \
 				vr_vars.c tml_init.c ft_str2.c \
 				vr_descompress.c vr_descompress_utils.c \
 				vr_local_vars.c  \
