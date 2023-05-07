@@ -6,7 +6,7 @@
 /*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:08:06 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/06 17:33:52 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/05/06 23:13:09 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,6 @@ static void	handle_sigquit(int signal)
 	(void)signal;
 	printf("Quit\n");
 }
-
-// static void	close_fd_pp(t_ml *tml, int *fd)
-// {
-// 	if (*fd != -10)
-// 		close(*fd);
-// 	if (tml->pp_quant != 0 && !(tml->i == tml->pp_quant))
-// 		close(tml->pp_lpipes[tml->i][1]);
-// }
 
 void	fk_call_new_process(t_ml *tml)
 {
@@ -46,7 +38,6 @@ void	fk_call_new_process(t_ml *tml)
 		var.name = ft_strcpy("pid", FALSE);
 		var.value = ft_strcpy(ft_itoa(pid), TRUE);
 		vr_insert(&tml->pid_list, var, TRUE, TRUE);
-		// close_fd_pp(tml, &fd);
 		if (fd != -10)
 			fd_close(fd);
 		fd_close(p_fd[1]);

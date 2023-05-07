@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sa_hooks.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 15:33:53 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/04 13:39:39 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/06 23:24:03 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 static void	force_free(t_ml *tml)
 {
-	if (tml->pp_quant > 0)
-		pp_delete_linked_pipes(tml);
 	if (tml->cmd)
 		ft_free(tml->cmd);
 	tml_free_uhp(tml);
