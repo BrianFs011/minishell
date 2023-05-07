@@ -6,7 +6,7 @@
 /*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:14:10 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/06 23:12:43 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/05/07 17:59:31 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	tml_exec_child(t_ml *tml, int *fd)
 
 	exit_status = 0;
 	exit_status = rd_redirection(tml, fd);
+	pp_switch(tml, NULL);
 	if (!ft_strncmp(tml->split_cmd[0], "./", 2) || tml->split_cmd[0][0] == '/')
 		exit_status = tml_check_access(tml);
 	if (condition_for_find_exec(tml) && exit_status == 0)

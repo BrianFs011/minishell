@@ -25,7 +25,7 @@ void	pp_switch(t_ml *tml, int *fd)
 	}
 	else
 	{
-		if (*fd != -10)
+		if (*fd && *fd != -10)
 			fd_close(*fd);
 		fd_close(tml->fd_pipe[1]);
 		if (tml->pp_quant != 0 && tml->redirect_in != 1)

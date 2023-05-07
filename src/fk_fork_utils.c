@@ -6,7 +6,7 @@
 /*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:08:06 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/07 13:15:47 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/05/07 17:49:11 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	fk_call_new_process(t_ml *tml)
 	else
 	{
 		g_pid = G_CHILD;
-		pp_switch(tml, &fd);
 		signal(SIGQUIT, SIG_DFL);
 		tml->exit_status = tml_exec_child(tml, &fd);
 	}
