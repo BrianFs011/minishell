@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:57:24 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/04 19:10:40 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:48:28 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,14 @@ void	tml_call(t_ml *tml)
 
 void	tml_loop(t_ml *tml)
 {
-	g_pid = G_FATHER;
+	if (tml->cmd)
+	{
+		tml->cmd = NULL;
+		if (fd_dup2(tml->stdin, STDIN_FILENO)
+			|| fd_dup2(tml->stdout, STDOUT_FILENO))
+			tml_set_pexit_status("dup2", EXIT_FAILURE);
+		ft_dup_stdin_out(tml);
+	}
 	tml_create_prompt(tml);
 	tml->cmd = readline(tml->prompt);
 	if (tml->cmd)
@@ -51,6 +58,7 @@ int	main(int argc, t_string *argv, t_string *env)
 	tml_init(argc, argv, env, &tml);
 	while (tml.running == RUNNIG)
 	{
+		g_pid = G_FATHER;
 		sa_hooks();
 		tml_loop(&tml);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tml_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:53:50 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/03 13:24:23 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/06 13:41:47 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,5 @@ void	tml_init(int argc, t_string *argv, t_string *env, t_ml *tml)
 	tml->running = RUNNIG;
 	tml->quotes_vars = NULL;
 	tml_get_uhp(tml);
+	ft_dup_stdin_out(tml);
 }

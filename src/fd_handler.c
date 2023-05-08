@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fd_handler.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:42:40 by sde-cama          #+#    #+#             */
-/*   Updated: 2023/05/02 18:05:04 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/06 13:42:04 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,10 @@ int	fd_dup2(int oldfd, int newfd)
 		return (1);
 	fd_close(oldfd);
 	return (0);
+}
+
+void	ft_dup_stdin_out(t_ml *tml)
+{
+	tml->stdin = dup(STDIN_FILENO);
+	tml->stdout = dup(STDOUT_FILENO);
 }

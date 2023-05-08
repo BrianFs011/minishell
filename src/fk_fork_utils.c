@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fk_fork_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:08:06 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/04 16:02:39 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/07 17:49:11 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,32 +18,32 @@ static void	handle_sigquit(int signal)
 	printf("Quit\n");
 }
 
-static void	close_fd_pp(t_ml *tml, int *fd)
+static void	fk_save_pid(t_ml *tml, int pid)
 {
-	if (*fd != -10)
-		close(*fd);
-	if (tml->pp_quant != 0 && !(tml->i == tml->pp_quant))
-		close(tml->pp_lpipes[tml->i][1]);
+	t_varlist	var;
+
+	var.name = ft_strcpy("pid", FALSE);
+	var.value = ft_strcpy(ft_itoa(pid), TRUE);
+	vr_insert(&tml->pid_list, var, TRUE, TRUE);
 }
 
 void	fk_call_new_process(t_ml *tml)
 {
 	int			fd;
 	pid_t		pid;
-	t_varlist	var;
 
 	fd = -10;
+	if (pipe(tml->fd_pipe) == -1)
+		perror("Pipe fail. Could not pipe files.");
 	pid = fork();
 	if (pid == -1)
 		perror("Erro ao criar o processo filho\n");
 	else if (pid != 0)
 	{
 		g_pid = pid;
+		pp_switch(tml, &fd);
 		signal(SIGQUIT, handle_sigquit);
-		var.name = ft_strcpy("pid", FALSE);
-		var.value = ft_strcpy(ft_itoa(pid), TRUE);
-		vr_insert(&tml->pid_list, var, TRUE, TRUE);
-		close_fd_pp(tml, &fd);
+		fk_save_pid(tml, pid);
 	}
 	else
 	{

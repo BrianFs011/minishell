@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 20:26:30 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/05 18:14:03 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:54:27 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,10 @@ void	tml_scroll_pipe_list(t_ml *tml)
 {
 	int	exit_code;
 
-	exit_code = 0;
-	if (tml->pp_quant > 0)
-		pp_linked_pipes(tml);
+	exit_code = rd_open_here_doc(tml);
 	tml->i = -1;
-	while (++tml->i <= tml->pp_quant && tml->running == RUNNIG
+	while (++tml->i <= tml->pp_quant
+		&& tml->running == RUNNIG
 		&& exit_code == 0)
 	{
 		if (tml->pp_cmd[tml->i])
@@ -60,8 +59,8 @@ void	tml_scroll_pipe_list(t_ml *tml)
 		else
 			exit_code = do_not_have_command(tml);
 	}
-	if (tml->pp_quant > 0)
-		pp_delete_linked_pipes(tml);
 	if (exit_code == 0)
 		fk_wait_execs(tml);
+	if (tml->here_doc)
+		free(tml->here_doc);
 }
