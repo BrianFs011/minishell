@@ -6,20 +6,11 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 18:09:52 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/08 11:37:58 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/08 14:12:45 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-
-t_ml	*save_point(t_ml *tml, t_bool save)
-{
-	static t_ml	*tml_save;
-
-	if (save)
-		tml_save = tml;
-	return (tml_save);
-}
 
 int	count_split(t_string *split)
 {

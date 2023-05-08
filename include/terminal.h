@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:49:53 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/08 11:34:54 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/08 12:33:50 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,5 @@ void		tml_exit_status(t_varlist **start, int value, int init);
 int			tml_set_exit_status(t_string msg, int exit);
 
 int			tml_set_pexit_status(t_string message, int type);
-
-t_ml		*save_point(t_ml *tml, t_bool save);
 
 #endif

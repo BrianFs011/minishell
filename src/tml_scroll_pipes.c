@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 20:26:30 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/08 11:32:29 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:54:27 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ void	tml_scroll_pipe_list(t_ml *tml)
 {
 	int	exit_code;
 
-	exit_code = 0;
-	rd_open_here_doc(tml);
+	exit_code = rd_open_here_doc(tml);
 	tml->i = -1;
-	while (++tml->i <= tml->pp_quant && tml->running == RUNNIG
+	while (++tml->i <= tml->pp_quant
+		&& tml->running == RUNNIG
 		&& exit_code == 0)
 	{
 		if (tml->pp_cmd[tml->i])

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:57:24 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/07 18:42:57 by sde-cama         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:48:28 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	tml_call(t_ml *tml)
 
 void	tml_loop(t_ml *tml)
 {
-	g_pid = G_FATHER;
 	if (tml->cmd)
 	{
 		tml->cmd = NULL;
@@ -59,6 +58,7 @@ int	main(int argc, t_string *argv, t_string *env)
 	tml_init(argc, argv, env, &tml);
 	while (tml.running == RUNNIG)
 	{
+		g_pid = G_FATHER;
 		sa_hooks();
 		tml_loop(&tml);
 	}
