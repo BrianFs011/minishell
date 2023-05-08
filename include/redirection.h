@@ -6,7 +6,7 @@
 /*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 16:09:02 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/04 07:51:51 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/08 11:32:19 by briferre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,7 @@ void	remove_redirection(t_ml *tml);
 /// @brief Set here_doc as STDIN
 /// @param here_doc type t_string
 void	set_here_doc(t_string here_doc);
+
+void	rd_open_here_doc(t_ml *tml);
 
 #endif

@@ -15,7 +15,7 @@ VARIABLES 	= vr_linked_list.c vr_linked_list_delete.c
 LIBFTE			= ft_atoi_llint.c
 BUILTINS		= bt_exit.c bt_cd.c bt_echo.c bt_pwd.c bt_env.c bt_unset.c bt_export.c bt_export_unset_utils.c
 CHECKS			= ck_cmd.c ck_compress.c ck_redirect.c ck_llong_int.c
-REDIRECTION	= rd_redirection.c rd_redirection_utils.c
+REDIRECTION	= rd_redirection.c rd_redirection_utils.c rd_here_doc.c
 TERMINAL		= tml_functions_child.c tml_functions_father.c tml_functions_utils.c tml_functions_utils2.c tml_scroll_pipes.c
 
 #VARIABLES
