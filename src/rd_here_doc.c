@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rd_here_doc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: briferre <briferre@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sde-cama <sde-cama@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 11:29:29 by briferre          #+#    #+#             */
-/*   Updated: 2023/05/08 17:34:25 by briferre         ###   ########.fr       */
+/*   Updated: 2023/05/10 21:02:39 by sde-cama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	if_here_doc(t_ml *tml, t_string *cmd, int j, int *exit_code)
 		else
 			tml->here_doc = ft_strrpc(tml->here_doc,
 					rd_in_delimiter(tml, cmd[j + 1]), TRUE, TRUE);
-		tml->redirect_in = 1;
+		tml->redirect_in = 2;
 		*exit_code = is_ctrl_c(0, 0);
 	}
 }

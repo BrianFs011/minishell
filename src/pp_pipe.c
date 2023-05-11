@@ -32,5 +32,10 @@ void	pp_switch(t_ml *tml, int *fd)
 			fd_dup2(tml->fd_pipe[0], STDIN_FILENO);
 		else
 			fd_close(tml->fd_pipe[0]);
+		if (tml->here_doc)
+		{
+			free(tml->here_doc);
+			tml->here_doc = NULL;
+		}
 	}
 }
